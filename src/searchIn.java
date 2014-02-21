@@ -1,5 +1,7 @@
 //package abc;
 
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -14,13 +16,13 @@ public class searchIn {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					searchIn window = new searchIn();
 					window.frame.setVisible(true);
-					search sch = new search();
+					/*search sch = new search();
 					sch.search(node, val);
 					if(res == true)
 					{
@@ -28,14 +30,14 @@ public class searchIn {
 					}
 					else{
 						lblNewLabal_1 = "Found";
-					}
+					}*/
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-*/
+
 	/**
 	 * Create the application.
 	 */
