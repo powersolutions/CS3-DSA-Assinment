@@ -44,6 +44,19 @@ public class Operations {
 		}
 	}
 
+	/*
+	 * inorder to get all data from the database
+	 * frist you need to call the getAll method in the operations class through a object 
+	 * then you can access the data through the queue "data" in the operations class;
+	 * 
+	 * the queue "data" will hold the information about the data it's holding. 
+	 * so to access the data in the node, 
+	 * within your local method, create a variable with the TreeNode calss to hold the node infromation 
+	 * taken from the queue"data"
+	 * then through that TreeNode variable you'll be able to access the data like,
+	 * 
+	 * to get bookname, you can use TreeNodeObject.bName
+	 */
 	public void getAll(TreeNode node) {
 		if (node != null) {
 			getAll(node.left);
