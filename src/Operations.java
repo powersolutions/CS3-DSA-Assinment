@@ -21,7 +21,7 @@ public class Operations {
 				node.right = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
 		}
 	}
-<<<<<<< HEAD
+
 
 	/*
 	 * inorder to get all data from the database
@@ -36,13 +36,11 @@ public class Operations {
 	 * 
 	 * to get bookname, you can use TreeNodeObject.bName
 	 */
-	public void getAll(TreeNode node) {
-		if (node != null) {
-=======
+	
 	
 	public void getAll(TreeNode node){
 		if(node != null){
->>>>>>> parent of c718298... added sample application
+
 			getAll(node.left);
 			data.add(node);
 			getAll(node.right);
