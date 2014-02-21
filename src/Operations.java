@@ -64,4 +64,19 @@ public class Operations {
 			getAll(node.right);
 		}
 	}
+	
+	public TreeNode searchByName(TreeNode node, String bookName){
+		TreeNode n;
+		while(node != null){
+			if(node.bTitle.compareTo(bookName)>0){
+				node = node.right;
+			}else if(node.bTitle.compareTo(bookName)<0){
+				node=node.left;
+			}else{
+				n = node;
+				break;
+			}
+		}
+		return node;
+	}
 }
