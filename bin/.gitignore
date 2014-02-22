@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /TreeNode.class
+=======
+>>>>>>> 6ab0be5c7cd553ade7bf4b9af6ba64528c9f5771
 /Operations.class
 /Sample$1.class
 /Sample$2.class
@@ -6,8 +9,12 @@
 /Sample$4.class
 /Sample$5.class
 /Sample.class
+<<<<<<< HEAD
 /projectInterface$1.class
 /projectInterface.class
 /Interface$1.class
 /Interface.class
 /Interface$2.class
+=======
+/TreeNode.class
+>>>>>>> 6ab0be5c7cd553ade7bf4b9af6ba64528c9f5771

@@ -141,27 +141,29 @@ public class Sample {
 				op.getAll(root);
 				while (!op.data.isEmpty()) {
 					TreeNode node = op.data.remove();
-					model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName, node.aSurname });
+					model.addRow(new Object[] { node.bTitle, node.ISBN,
+							node.aName, node.aSurname });
 				}
 			}
 		});
 		btnNewButton_1.setBounds(433, 27, 117, 25);
 		frame.getContentPane().add(btnNewButton_1);
-		
+
 		btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
-				//String temp = textField_search.getText();
-				TreeNode node= op.searchByName(root, txtSe.getText());
-				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName, node.aSurname });
+				// String temp = textField_search.getText();
+				TreeNode node = op.searchByName(root, txtSe.getText());
+				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+						node.aSurname });
 			}
 		});
 		btnNewButton_2.setBounds(417, 253, 117, 25);
 		frame.getContentPane().add(btnNewButton_2);
-		
+
 		txtSe = new JTextField();
 		txtSe.addMouseListener(new MouseAdapter() {
 			@Override
