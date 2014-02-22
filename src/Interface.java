@@ -13,6 +13,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Interface {
@@ -26,6 +29,8 @@ public class Interface {
 	private JTextField txtAuthorFname;
 	private JTextField txtAuthorSname;
 	private JButton btnAdd;
+	private JTextField textsearch;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -56,7 +61,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		frame.setBounds(100, 100, 528, 338);
+		frame.setBounds(100, 100, 624, 518);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -112,6 +117,58 @@ public class Interface {
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAdd.setBounds(124, 230, 89, 23);
 		panel.add(btnAdd);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "Search", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(268, 11, 315, 282);
+		frame.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(10, 23, 295, 248);
+		panel_2.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JRadioButton radisbn = new JRadioButton("ISBN No");
+		radisbn.setBounds(23, 23, 81, 23);
+		panel_1.add(radisbn);
+		
+		JRadioButton radbok = new JRadioButton("Book Name");
+		radbok.setBounds(23, 49, 109, 23);
+		panel_1.add(radbok);
+		
+		textsearch = new JTextField();
+		textsearch.setBounds(162, 24, 123, 20);
+		panel_1.add(textsearch);
+		textsearch.setColumns(10);
+		
+		JButton search = new JButton("Search");
+		search.setBounds(172, 55, 89, 23);
+		panel_1.add(search);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		));
+		table.setBounds(10, 145, 275, 90);
+		panel_1.add(table);
+		
+		JButton searchall = new JButton("Search All");
+		searchall.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+				DefaultTableModel tab = (DefaultTableModel) table.getModel();
+				tab.setRowCount(0);
+				tab.addRow(new Object[]{"Book Name","ISBN NO","Author","Surname"});
+			}
+		});
+		searchall.setBounds(95, 111, 114, 23);
+		panel_1.add(searchall);
 		
 		
 		btnAdd.addMouseListener(new MouseAdapter() {
