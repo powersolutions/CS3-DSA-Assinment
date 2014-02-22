@@ -6,7 +6,7 @@ public class Operations {
 
 	/*
 	 * insert operation to insert a value to the database. first you have to
-	 * create a object with the TreeNode class
+	 * create a object with the TreeNode class 
 	 * 
 	 * lest's assume that the object name is root
 	 * 
@@ -69,6 +69,7 @@ public class Operations {
 	static TreeNode n;
 
 	public TreeNode searchByName(TreeNode node, String bookName) {
+		n = null;
 		if (node.bTitle.length() == bookName.length()) {
 			if (node.bTitle.equals(bookName)) {
 				n = node;
@@ -84,4 +85,7 @@ public class Operations {
 		}
 		return n;
 	}
+	/*public TreeNode searchByIsbn(TreeNode node, int isbn){
+		
+	}*/
 }

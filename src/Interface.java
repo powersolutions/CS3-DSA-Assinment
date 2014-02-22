@@ -61,6 +61,7 @@ public class Interface {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panel.setBorder(new TitledBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)), "Insert", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 204)));
 		panel.setBounds(10, 11, 240, 282);
 		frame.getContentPane().add(panel);

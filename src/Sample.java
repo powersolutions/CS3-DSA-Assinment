@@ -10,9 +10,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollBar;
 
 public class Sample {
 
@@ -28,6 +31,7 @@ public class Sample {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JTextField txtSe;
+	private Scrollable tbScroll;
 
 	/**
 	 * Launch the application.
@@ -127,10 +131,14 @@ public class Sample {
 		panel.add(btnNewButton);
 
 		table = new JTable();
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
 				"New column", "New column", "New column", "New column" }));
 		table.setBounds(252, 64, 408, 136);
 		frame.getContentPane().add(table);
+		
+		
 
 		btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
