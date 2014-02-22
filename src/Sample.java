@@ -24,6 +24,24 @@ public class Sample {
 	TreeNode root;
 	Operations op = new Operations();
 
+	private void orderByIsbn() {
+		op.getAll(root);
+		while (!op.data.isEmpty()) {
+			TreeNode tem = op.data.remove();
+			if (isbn == null) {
+				isbn = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
+						tem.aSurname);
+			} else {
+				
+				op.insertByIsbn(isbn, tem.bTitle, tem.ISBN, tem.aName,
+						tem.aSurname);
+			}
+		}
+		// op.orderByIsbn(root, isbn);
+		op.getAll(isbn);
+
+	}
+
 	private JFrame frame;
 	private JTextField txtBookName;
 	private JTextField txtIsbn;
@@ -169,7 +187,7 @@ public class Sample {
 						node.aSurname });
 			}
 		});
-		btnNewButton_2.setBounds(417, 253, 117, 25);
+		btnNewButton_2.setBounds(355, 253, 117, 25);
 		frame.getContentPane().add(btnNewButton_2);
 
 		txtSe = new JTextField();
@@ -183,6 +201,26 @@ public class Sample {
 		txtSe.setColumns(10);
 		txtSe.setBounds(417, 212, 114, 19);
 		frame.getContentPane().add(txtSe);
+
+		JButton button = new JButton("New button");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				orderByIsbn();
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+
+				while (!op.data.isEmpty()) {
+					TreeNode node = op.data.remove();
+					model.addRow(new Object[] { node.bTitle, node.ISBN,
+							node.aName, node.aSurname });
+				}
+			}
+
+		});
+		button.setBounds(497, 253, 117, 25);
+		frame.getContentPane().add(button);
 
 	}
 }

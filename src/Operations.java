@@ -43,15 +43,34 @@ public class Operations {
 						autherSurname);
 		}
 	}
-	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) {
-		data = null;
-		getAll(treenode);
-		
-		while(!data.isEmpty()){
-			TreeNode node = data.remove();
-			if(node.ISBN < isbnNode.ISBN){
-				
+
+	public void insertByIsbn(TreeNode node, String bookTitle, int ISBN,
+			String autherName, String autherSurname) {
+		if (ISBN < node.ISBN) {
+			if (node.left != null) {
+				insertByIsbn(node.left, bookTitle, ISBN, autherName, autherSurname);
+			}else{
+				node.left = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
 			}
+		}else if(ISBN > node.ISBN){
+			if(node.right != null){
+				insertByIsbn(node.right, bookTitle, ISBN, autherName, autherSurname);
+			}else
+				node.right = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
+		}
+	}
+
+	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) {
+		//data = null;
+		
+		
+		while (!data.isEmpty()) {
+			TreeNode node = data.remove();
+			String bName = node.bTitle;
+			int isbn = node.ISBN;
+			String aName = node.aName;
+			String aSurname = node.aSurname;
+			insertByIsbn(node, bName, isbn, aName, aSurname);
 		}
 	}
 
@@ -70,6 +89,7 @@ public class Operations {
 	 */
 
 	public void getAll(TreeNode node) {
+		//data = null;
 		if (node != null) {
 
 			getAll(node.left);
@@ -97,8 +117,6 @@ public class Operations {
 		}
 		return n;
 	}
-
-	
 
 	public TreeNode searchByIsbn(TreeNode node, int isbn) {
 		n = null;
