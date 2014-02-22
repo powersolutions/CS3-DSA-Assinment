@@ -52,6 +52,8 @@ public class Sample {
 	private JButton btnNewButton_2;
 	private JTextField txtSe;
 	private Scrollable tbScroll;
+	private JButton button_2;
+	private JButton button_3;
 
 	/**
 	 * Launch the application.
@@ -98,7 +100,7 @@ public class Sample {
 		panel.setLayout(null);
 
 		txtBookName = new JTextField();
-		txtBookName.setText("book name");
+		txtBookName.setText("book");
 		txtBookName.setBounds(53, 45, 114, 19);
 		panel.add(txtBookName);
 		txtBookName.setColumns(10);
@@ -206,7 +208,7 @@ public class Sample {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				isbn = null;
 				orderByIsbn();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
@@ -236,6 +238,37 @@ public class Sample {
 		});
 		button_1.setBounds(496, 253, 117, 25);
 		frame.getContentPane().add(button_1);
+		
+		button_2 = new JButton("New button");
+		button_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreeNode temp = op.deleteByName(root, txtSe.getText());
+				if(temp!= null){
+					txtSe.setText("doen");
+				}
+				else
+					txtSe.setText("problem");
+			}
+		});
+		button_2.setBounds(355, 300, 117, 25);
+		frame.getContentPane().add(button_2);
+		
+		button_3 = new JButton("New button");
+		button_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TreeNode node = op.minNode(root);
+				
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				// String temp = textField_search.getText();
+				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+						node.aSurname });				
+			}
+		});
+		button_3.setBounds(580, 27, 117, 25);
+		frame.getContentPane().add(button_3);
 
 	}
 }

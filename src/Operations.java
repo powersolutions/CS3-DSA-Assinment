@@ -6,7 +6,7 @@ public class Operations {
 
 	/*
 	 * insert operation to insert a value to the database. first you have to
-	 * create a object with the TreeNode class 
+	 * create a object with the TreeNode class
 	 * 
 	 * lest's assume that the object name is root
 	 * 
@@ -48,22 +48,25 @@ public class Operations {
 			String autherName, String autherSurname) {
 		if (ISBN < node.ISBN) {
 			if (node.left != null) {
-				insertByIsbn(node.left, bookTitle, ISBN, autherName, autherSurname);
-			}else{
-				node.left = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
+				insertByIsbn(node.left, bookTitle, ISBN, autherName,
+						autherSurname);
+			} else {
+				node.left = new TreeNode(bookTitle, ISBN, autherName,
+						autherSurname);
 			}
-		}else if(ISBN > node.ISBN){
-			if(node.right != null){
-				insertByIsbn(node.right, bookTitle, ISBN, autherName, autherSurname);
-			}else
-				node.right = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
+		} else if (ISBN > node.ISBN) {
+			if (node.right != null) {
+				insertByIsbn(node.right, bookTitle, ISBN, autherName,
+						autherSurname);
+			} else
+				node.right = new TreeNode(bookTitle, ISBN, autherName,
+						autherSurname);
 		}
 	}
 
 	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) {
-		//data = null;
-		
-		
+		// data = null;
+
 		while (!data.isEmpty()) {
 			TreeNode node = data.remove();
 			String bName = node.bTitle;
@@ -89,7 +92,7 @@ public class Operations {
 	 */
 
 	public void getAll(TreeNode node) {
-		//data = null;
+		// data = null;
 		if (node != null) {
 
 			getAll(node.left);
@@ -120,45 +123,53 @@ public class Operations {
 
 	public TreeNode searchByIsbn(TreeNode node, int isbn) {
 		n = null;
-		if(node.ISBN == isbn){
-			n=node;
+		if (node.ISBN == isbn) {
+			n = node;
 		}
-		if(node.ISBN < isbn){
+		if (node.ISBN < isbn) {
 			searchByIsbn(node.right, isbn);
 		}
-		if(node.ISBN > isbn){
+		if (node.ISBN > isbn) {
 			searchByIsbn(node.left, isbn);
 		}
 
 		return n;
 	}
-	public TreeNode minNode(TreeNode node){
-		while(node.left != null){
+
+	public TreeNode minNode(TreeNode node) {
+		while (node.left != null) {
 			node = node.left;
 		}
 		return node;
 	}
-	public TreeNode deleteByName(TreeNode node, String bookTitle){
-		if(bookTitle.equals(node.bTitle)){
-			if(node.left==null && node.right==null){
+
+	public TreeNode deleteByName(TreeNode node, String bookTitle) {
+		if (node == null) {
+			return null;
+		}
+
+		if (bookTitle.equals(node.bTitle)) {
+			if (node.left == null && node.right == null) {
 				return null;
-			}
-			if(node.left==null){
+			} else if (node.left == null) {
+
 				return node.right;
-			}
-			if(node.right==null){
+			} else if (node.right == null) {
 				return node.left;
-			}else{
-				node= minNode(node);
-				node.right = deleteByName(node.right, bookTitle);
+			} else {
+				TreeNode temp = minNode(node.right);
+				node.bTitle = temp.bTitle;
+				node.ISBN = temp.ISBN;
+				node.aName = temp.aName;
+				node.aSurname = temp.aSurname;
+				node.right = deleteByName(node.right, temp.bTitle);
 				return node;
 			}
 
-		}else if(node.bTitle.length() < bookTitle.length()){
-			node.left =(deleteByName(node.left, bookTitle));
+		} else if (node.bTitle.length() > bookTitle.length()) {
+			node.left = (deleteByName(node.left, bookTitle));
 			return node;
-		}
-		else{
+		} else {
 			node.right = deleteByName(node.right, bookTitle);
 			return node;
 		}
