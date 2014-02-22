@@ -33,6 +33,11 @@ public class Operations {
 				insert(node.right, bookTitle, ISBN, autherName, autherSurname);
 			else
 				node.right = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
+		}else if(bookTitle.length()==node.bTitle.length()){
+			if(node.right != null)
+				insert(node.right, bookTitle, ISBN, autherName, autherSurname);
+			else
+				node.right = new TreeNode(bookTitle, ISBN, autherName, autherSurname);
 		}
 	}
 
@@ -60,19 +65,12 @@ public class Operations {
 			getAll(node.right);
 		}
 	}
-	
+	static TreeNode n;
 	public TreeNode searchByName(TreeNode node, String bookName){
-		TreeNode n;
-		while(node != null){
-			if(node.bTitle.compareTo(bookName)>0){
-				node = node.right;
-			}else if(node.bTitle.compareTo(bookName)<0){
-				node=node.left;
-			}else{
-				n = node;
-				break;
+			if(node == null){
+				return n;
+			}if(node.bTitle.equals(bookName)){
+				
 			}
-		}
-		return node;
 	}
 }
