@@ -6,7 +6,7 @@ public class Operations {
 
 	/*
 	 * insert operation to insert a value to the database. first you have to
-	 * create a object with the TreeNode class
+	 * create a object with the TreeNode class 
 	 * 
 	 * lest's assume that the object name is root
 	 * 
