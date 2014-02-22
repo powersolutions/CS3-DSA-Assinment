@@ -164,7 +164,13 @@ public class Interface {
 			{
 				DefaultTableModel tab = (DefaultTableModel) table.getModel();
 				tab.setRowCount(0);
-				tab.addRow(new Object[]{"Book Name","ISBN NO","Author","Surname"});
+				//tab.addRow(new Object[]{"Book Name","ISBN NO","Author","Surname"});
+				op.getAll(root);
+				while (!op.data.isEmpty()) {
+					TreeNode node = op.data.remove();
+					tab.addRow(new Object[] { node.bTitle, node.ISBN,
+							node.aName, node.aSurname });
+				}
 			}
 		});
 		searchall.setBounds(95, 111, 114, 23);
