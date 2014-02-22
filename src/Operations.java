@@ -69,17 +69,19 @@ public class Operations {
 	static TreeNode n;
 
 	public TreeNode searchByName(TreeNode node, String bookName) {
-		if (bookName.length() > node.bTitle.length()) {
-			searchByName(node.right, bookName);
-		} else if (bookName.length() < node.bTitle.length()) {
-			searchByName(node.left, bookName);
-		} else if (node.bTitle.compareTo(bookName) == 0) {
+		if (node.bTitle.length() == bookName.length()) {
 			if (node.bTitle.equals(bookName)) {
 				n = node;
 			} else
 				searchByName(node.right, bookName);
 		}
+		if (bookName.length() > node.bTitle.length()) {
+			searchByName(node.right, bookName);
+		}
+		if (bookName.length() < node.bTitle.length()) {
+			searchByName(node.left, bookName);
 
+		}
 		return n;
 	}
 }
