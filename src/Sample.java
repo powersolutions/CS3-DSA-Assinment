@@ -172,7 +172,7 @@ public class Sample {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(433, 27, 117, 25);
+		btnNewButton_1.setBounds(322, 27, 117, 25);
 		frame.getContentPane().add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("New button");
@@ -219,8 +219,23 @@ public class Sample {
 			}
 
 		});
-		button.setBounds(497, 253, 117, 25);
+		button.setBounds(451, 27, 117, 25);
 		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("New button");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				// String temp = textField_search.getText();
+				TreeNode node = op.searchByIsbn(isbn, Integer.parseInt(txtSe.getText()));
+				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+						node.aSurname });				
+			}
+		});
+		button_1.setBounds(496, 253, 117, 25);
+		frame.getContentPane().add(button_1);
 
 	}
 }

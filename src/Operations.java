@@ -120,7 +120,47 @@ public class Operations {
 
 	public TreeNode searchByIsbn(TreeNode node, int isbn) {
 		n = null;
+		if(node.ISBN == isbn){
+			n=node;
+		}
+		if(node.ISBN < isbn){
+			searchByIsbn(node.right, isbn);
+		}
+		if(node.ISBN > isbn){
+			searchByIsbn(node.left, isbn);
+		}
 
 		return n;
+	}
+	public TreeNode minNode(TreeNode node){
+		while(node.left != null){
+			node = node.left;
+		}
+		return node;
+	}
+	public TreeNode deleteByName(TreeNode node, String bookTitle){
+		if(bookTitle.equals(node.bTitle)){
+			if(node.left==null && node.right==null){
+				return null;
+			}
+			if(node.left==null){
+				return node.right;
+			}
+			if(node.right==null){
+				return node.left;
+			}else{
+				node= minNode(node);
+				node.right = deleteByName(node.right, bookTitle);
+				return node;
+			}
+
+		}else if(node.bTitle.length() < bookTitle.length()){
+			node.left =(deleteByName(node.left, bookTitle));
+			return node;
+		}
+		else{
+			node.right = deleteByName(node.right, bookTitle);
+			return node;
+		}
 	}
 }
