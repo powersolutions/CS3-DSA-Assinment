@@ -6,7 +6,7 @@ public class Operations {
 
 	/*
 	 * insert operation to insert a value to the database. first you have to
-	 * create a object with the TreeNode class 
+	 * create a object with the TreeNode class
 	 * 
 	 * lest's assume that the object name is root
 	 * 
@@ -18,6 +18,7 @@ public class Operations {
 	 * give the object name you created with the TreeNode as the first
 	 * parameter. (root)
 	 */
+
 	public void insert(TreeNode node, String bookTitle, int ISBN,
 			String autherName, String autherSurname) {
 		if (bookTitle.length() < node.bTitle.length()) {
@@ -40,6 +41,17 @@ public class Operations {
 			else
 				node.right = new TreeNode(bookTitle, ISBN, autherName,
 						autherSurname);
+		}
+	}
+	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) {
+		data = null;
+		getAll(treenode);
+		
+		while(!data.isEmpty()){
+			TreeNode node = data.remove();
+			if(node.ISBN < isbnNode.ISBN){
+				
+			}
 		}
 	}
 
@@ -85,7 +97,12 @@ public class Operations {
 		}
 		return n;
 	}
-	/*public TreeNode searchByIsbn(TreeNode node, int isbn){
-		
-	}*/
+
+	
+
+	public TreeNode searchByIsbn(TreeNode node, int isbn) {
+		n = null;
+
+		return n;
+	}
 }

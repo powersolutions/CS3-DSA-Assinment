@@ -19,6 +19,8 @@ import javax.swing.JScrollBar;
 
 public class Sample {
 
+	TreeNode isbn;
+
 	TreeNode root;
 	Operations op = new Operations();
 
@@ -137,8 +139,6 @@ public class Sample {
 				"New column", "New column", "New column", "New column" }));
 		table.setBounds(252, 64, 408, 136);
 		frame.getContentPane().add(table);
-		
-		
 
 		btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
