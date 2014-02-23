@@ -61,7 +61,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		frame.setBounds(100, 100, 624, 518);
+		frame.setBounds(100, 100, 802, 518);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		

@@ -238,7 +238,7 @@ public class Sample {
 		});
 		button_1.setBounds(496, 253, 117, 25);
 		frame.getContentPane().add(button_1);
-		
+		//test
 		button_2 = new JButton("New button");
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override

@@ -164,6 +164,8 @@ public class Operations {
 				node.aSurname = temp.aSurname;
 				node.right = deleteByName(node.right, temp.bTitle);
 				return node;
+				
+				
 			}
 
 		} else if (node.bTitle.length() > bookTitle.length()) {
@@ -174,4 +176,5 @@ public class Operations {
 			return node;
 		}
 	}
+	
 }
