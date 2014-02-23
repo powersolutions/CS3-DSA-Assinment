@@ -31,6 +31,7 @@ public class Interface {
 	private JButton btnAdd;
 	private JTextField textsearch;
 	private JTable table;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		frame.setBounds(100, 100, 802, 518);
+		frame.setBounds(100, 100, 919, 518);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -175,6 +176,34 @@ public class Interface {
 		});
 		searchall.setBounds(95, 111, 114, 23);
 		panel_1.add(searchall);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(null, "Remove", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBounds(595, 14, 306, 279);
+		frame.getContentPane().add(panel_4);
+		panel_4.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(12, 25, 282, 236);
+		panel_4.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JRadioButton radioButton = new JRadioButton("ISBN No");
+		radioButton.setBounds(8, 8, 80, 23);
+		panel_3.add(radioButton);
+		
+		JRadioButton radioButton_1 = new JRadioButton("Book Name");
+		radioButton_1.setBounds(8, 35, 109, 23);
+		panel_3.add(radioButton_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(147, 37, 123, 20);
+		panel_3.add(textField);
+		
+		JButton button = new JButton("Delet");
+		button.setBounds(168, 64, 89, 23);
+		panel_3.add(button);
 		
 		
 		btnAdd.addMouseListener(new MouseAdapter() {
