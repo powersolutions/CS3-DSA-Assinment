@@ -148,22 +148,6 @@ public class Operations {
 	public TreeNode deleteByName(TreeNode node, String bookTitle) {
 
 		TreeNode p, p2, n;
-		/*
-		 * if (node == null) { return null; }
-		 * 
-		 * else if (node.bTitle.length() > bookTitle.length()) { node.left =
-		 * (deleteByName(node.left, bookTitle)); return node; } else if
-		 * (node.bTitle.length() < bookTitle.length()) { node.right =
-		 * deleteByName(node.right, bookTitle); return node; } else { if
-		 * (node.left == null && node.right == null) { temp =
-		 * minNode(node.right); node.bTitle = temp.bTitle; node.ISBN =
-		 * temp.ISBN; node.aName = temp.aName; node.aSurname = temp.aSurname;
-		 * node.right = deleteByName(node.right, temp.bTitle);
-		 * 
-		 * } else if (node.left == null) { node = node.right;
-		 * 
-		 * } else if (node.right == null) { node = node.right; } return node; }
-		 */
 
 		if (node.bTitle.equals(bookTitle)) {
 			if (node.left == null && node.right == null) {
@@ -189,7 +173,7 @@ public class Operations {
 			node.left = n;
 		} else {
 			n = deleteByName(node.right, bookTitle);
-			node.right=n;
+			node.right = n;
 		}
 		return node;
 	}
