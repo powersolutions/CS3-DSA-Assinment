@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
@@ -152,10 +153,15 @@ public class Sample {
 							.getText(), txtSurName.getText());
 					lblNewLabel.setText("Added new node");
 				} else {
-					op.insert(root, txtBookName.getText(),
+					try{
+					op.insertByIsbn(root, txtBookName.getText(),
 							Integer.parseInt(txtIsbn.getText()),
 							txtAutherName.getText(), txtSurName.getText());
 					lblNewLabel.setText("value added");
+					}
+					catch(Exception ex){
+						JOptionPane.showMessageDialog(null, "error");
+					}
 				}
 				txtBookName.setText(null);
 			}
