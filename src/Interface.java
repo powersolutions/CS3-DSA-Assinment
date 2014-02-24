@@ -20,8 +20,27 @@ import javax.swing.table.DefaultTableModel;
 
 public class Interface {
 	
+	TreeNode isbn;
 	TreeNode root;
 	Operations op = new Operations();
+	
+	private void orderByIsbn() {
+		op.getAll(root);
+		while (!op.data.isEmpty()) {
+			TreeNode tem = op.data.remove();
+			if (isbn == null) {
+				isbn = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
+						tem.aSurname);
+			} else {
+				
+				op.insertByIsbn(isbn, tem.bTitle, tem.ISBN, tem.aName,
+						tem.aSurname);
+			}
+		}
+		// op.orderByIsbn(root, isbn);
+		op.getAll(isbn);
+
+	}
 
 	private JFrame frame;
 	private JTextField txtBookName;
@@ -32,6 +51,7 @@ public class Interface {
 	private JTextField textsearch;
 	private JTable table;
 	private JTextField textField;
+	private JLabel radioselect;
 
 	/**
 	 * Launch the application.
@@ -62,7 +82,7 @@ public class Interface {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		frame.setBounds(100, 100, 919, 518);
+		frame.setBounds(100, 100, 919, 367);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -143,7 +163,39 @@ public class Interface {
 		panel_1.add(textsearch);
 		textsearch.setColumns(10);
 		
+		radioselect = new JLabel("");
+		radioselect.setBounds(33, 79, 46, 14);
+		panel_1.add(radioselect);
+		
 		JButton search = new JButton("Search");
+		search.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				if(radisbn.SELECTED_ICON_CHANGED_PROPERTY)
+				{
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.setRowCount(0);
+					// String temp = textField_search.getText();
+					TreeNode node = op.searchByIsbn(isbn, Integer.parseInt(textsearch.getText()));
+					model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+							node.aSurname });	
+				}
+				else if (radbok.SELECTED_ICON_CHANGED_PROPERTY ) 
+				{
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.setRowCount(0);
+					// String temp = textField_search.getText();
+					TreeNode node = op.searchByName(root, textsearch.getText());
+					model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+							node.aSurname });
+				}
+				else 
+				{
+					radioselect.setText("Please select ISBN NO or Book Name");
+				}
+			}
+		});
 		search.setBounds(172, 55, 89, 23);
 		panel_1.add(search);
 		
@@ -176,6 +228,8 @@ public class Interface {
 		});
 		searchall.setBounds(95, 111, 114, 23);
 		panel_1.add(searchall);
+		
+		
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(null, "Remove", TitledBorder.LEADING, TitledBorder.TOP, null, null));
