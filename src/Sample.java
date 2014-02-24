@@ -41,6 +41,17 @@ public class Sample {
 		op.getAll(isbn);
 
 	}
+	private void delByName(String book){
+		TreeNode temp = op.searchByName(root, book);
+		if(root == null){
+			txtSe.setText("empty DB");
+		}else if(temp == null){
+			txtSe.setText("no such record");
+		}else{
+			root = op.deleteByName(root, book);
+			txtSe.setText("Deleted");
+		}
+	}
 
 	private JFrame frame;
 	private JTextField txtBookName;
@@ -238,17 +249,12 @@ public class Sample {
 		});
 		button_1.setBounds(496, 253, 117, 25);
 		frame.getContentPane().add(button_1);
-		//test
+
 		button_2 = new JButton("New button");
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TreeNode temp = op.deleteByName(root, txtSe.getText());
-				if(temp!= null){
-					txtSe.setText("doen");
-				}
-				else
-					txtSe.setText("problem");
+				delByName(txtSe.getText());
 			}
 		});
 		button_2.setBounds(355, 300, 117, 25);
