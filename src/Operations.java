@@ -101,7 +101,7 @@ public class Operations {
 		}
 	}
 
-	static TreeNode n;
+	TreeNode n;
 
 	public TreeNode searchByName(TreeNode node, String bookName) {
 		n = null;
@@ -143,7 +143,7 @@ public class Operations {
 		return node;
 	}
 
-	static TreeNode temp;
+	TreeNode temp;
 
 	public TreeNode deleteByName(TreeNode node, String bookTitle) {
 
