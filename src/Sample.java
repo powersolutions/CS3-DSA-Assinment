@@ -21,6 +21,7 @@ import javax.swing.JScrollBar;
 public class Sample {
 
 	TreeNode isbn;
+	TreeNode name;
 
 	TreeNode root;
 	Operations op = new Operations();
@@ -29,17 +30,17 @@ public class Sample {
 		op.getAll(root);
 		while (!op.data.isEmpty()) {
 			TreeNode tem = op.data.remove();
-			if (isbn == null) {
-				isbn = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
+			if (name == null) {
+				name = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
 						tem.aSurname);
 			} else {
 				
-				op.insertByIsbn(isbn, tem.bTitle, tem.ISBN, tem.aName,
+				op.insert(name, tem.bTitle, tem.ISBN, tem.aName,
 						tem.aSurname);
 			}
 		}
 		// op.orderByIsbn(root, isbn);
-		op.getAll(isbn);
+		op.getAll(name);
 
 	}
 	private void delByName(String book){
@@ -225,7 +226,7 @@ public class Sample {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				isbn = null;
+				name = null;
 				orderByIsbn();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
