@@ -146,69 +146,55 @@ public class Operations {
 	TreeNode temp;
 
 	public TreeNode deleteByName(TreeNode node, String bookTitle) {
-
-		TreeNode p, p2, n;
-
-		if (node.bTitle.equals(bookTitle)) {
-			if (node.left == null && node.right == null) {
+		if(node==null){
+			return null;
+		}
+		if(bookTitle.length()==node.bTitle.length() && bookTitle.equals(node.bTitle)){
+			if(node.left==null && node.right==null){
 				return null;
-			} else if (node.left == null) {
-				p = node.right;
-				return p;
-			} else if (node.right == null) {
-				p = node.left;
-				return p;
-			} else {
-				p2 = node.right;
-				p = node.left;
-				while (p.left != null) {
-					p = p.left;
-				}
-				p.left = node.left;
-				return p2;
 			}
-		}
-		if (bookTitle.length() < node.bTitle.length()) {
-			n = deleteByName(node.left, bookTitle);
-			node.left = n;
-		} else {
-			n = deleteByName(node.right, bookTitle);
-			node.right = n;
-		}
-		return node;
-	}
-	
-	public TreeNode deleteByISBN(TreeNode node, String bookTitle) {
-
-		TreeNode p, p2, n;
-
-		if (node.bTitle.equals(bookTitle)) {
-			if (node.left == null && node.right == null) {
-				return null;
-			} else if (node.left == null) {
-				p = node.right;
-				return p;
-			} else if (node.right == null) {
-				p = node.left;
-				return p;
-			} else {
-				p2 = node.right;
-				p = node.left;
-				while (p.left != null) {
-					p = p.left;
-				}
-				p.left = node.left;
-				return p2;
+			if(node.left==null){
+				return node.right;
 			}
+			if(node.right==null){
+				return node.left;
+			}
+			node = minNode(node);
+			node.right = deleteByName(node.right, bookTitle);
+			return node;
+		}else if(bookTitle.length()<node.bTitle.length()){
+			
+			node.left=deleteByName(node.left, bookTitle);
+			return node;
+		}else{
+			node.right = deleteByName(node.right, bookTitle);
+			return node;
 		}
-		if (bookTitle.length() < node.bTitle.length()) {
-			n = deleteByName(node.left, bookTitle);
-			node.left = n;
-		} else {
-			n = deleteByName(node.right, bookTitle);
-			node.right = n;
-		}
-		return node;
 	}
 
+	public TreeNode deleteByIsbn(TreeNode node, int isbn) {
+		if (node == null) {
+			return null;
+		}
+		if (isbn == node.ISBN) {
+			if (node.left == null && node.right == null) {
+				return null;
+			}
+			if (node.left == null) {
+				return node.right;
+			}
+			if (node.right == null) {
+				return node.left;
+			}
+			node = minNode(node);
+			node.right = deleteByIsbn(node.right, isbn);
+			return node;
+		} else if (isbn < node.ISBN) {
+			node.left = deleteByIsbn(node.left, isbn);
+			return node;
+		} else {
+			node.right = deleteByIsbn(node.right, isbn);
+			return node;
+		}
+	}
 }

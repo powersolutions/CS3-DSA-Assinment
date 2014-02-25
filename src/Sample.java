@@ -20,13 +20,16 @@ import javax.swing.JScrollBar;
 
 public class Sample {
 
-	TreeNode isbn;
-	TreeNode name;
+	TreeNode name=null;
+	TreeNode node;
 
-	TreeNode root;
+	TreeNode root = null;
 	Operations op = new Operations();
+	
+	private boolean stat=false;
 
 	private void orderByName() {
+		name=null;
 		op.getAll(root);
 		while (!op.data.isEmpty()) {
 			TreeNode tem = op.data.remove();
@@ -34,26 +37,46 @@ public class Sample {
 				name = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
 						tem.aSurname);
 			} else {
-				
-				op.insert(name, tem.bTitle, tem.ISBN, tem.aName,
-						tem.aSurname);
+
+				op.insert(name, tem.bTitle, tem.ISBN, tem.aName, tem.aSurname);
 			}
 		}
 		// op.orderByIsbn(root, isbn);
 		op.getAll(name);
+		//name = null;
 
 	}
-	private void delByName(String book){
-		TreeNode temp = op.searchByName(root, book);
-		if(root == null){
-			txtSe.setText("empty DB");
-		}else if(temp == null){
-			txtSe.setText("no such record");
+
+	private void delByName(String book) {
+		if(name==null){
+			txtSe.setText("empty db");
 		}else{
-			root = op.deleteByName(root, book);
-			txtSe.setText("Deleted");
+			TreeNode temp = op.searchByName(name, book);
+			if(temp==null){
+				txtSe.setText("invalid book name");
+			}else{
+				root = op.deleteByIsbn(root, temp.ISBN);
+				txtSe.setText("deleted");
+				//name=null;
+			}
 		}
 	}
+	private void delByIsbn(int isbn){
+		if(root==null){
+			txtSe.setText("emty db");
+		}
+		else{
+			TreeNode temp = op.searchByIsbn(root, isbn);
+			if(temp==null){
+				txtSe.setText("invalid isbn");
+			}
+			else{
+				root = op.deleteByIsbn(root, isbn);
+				txtSe.setText("deleted");
+			}
+		}
+	}
+	
 
 	private JFrame frame;
 	private JTextField txtBookName;
@@ -154,13 +177,12 @@ public class Sample {
 							.getText(), txtSurName.getText());
 					lblNewLabel.setText("Added new node");
 				} else {
-					try{
-					op.insertByIsbn(root, txtBookName.getText(),
-							Integer.parseInt(txtIsbn.getText()),
-							txtAutherName.getText(), txtSurName.getText());
-					lblNewLabel.setText("value added");
-					}
-					catch(Exception ex){
+					try {
+						op.insertByIsbn(root, txtBookName.getText(),
+								Integer.parseInt(txtIsbn.getText()),
+								txtAutherName.getText(), txtSurName.getText());
+						lblNewLabel.setText("value added");
+					} catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "error");
 					}
 				}
@@ -184,9 +206,11 @@ public class Sample {
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
+				//node = null;
 				op.getAll(root);
+				
 				while (!op.data.isEmpty()) {
-					TreeNode node = op.data.remove();
+					node = op.data.remove();
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 				}
@@ -202,13 +226,16 @@ public class Sample {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				// String temp = textField_search.getText();
+
 				orderByName();
 				TreeNode node = op.searchByName(name, txtSe.getText());
 				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
 						node.aSurname });
+				//name = null;
+				op.data.clear();
 			}
 		});
-		btnNewButton_2.setBounds(355, 253, 117, 25);
+		btnNewButton_2.setBounds(305, 253, 146, 25);
 		frame.getContentPane().add(btnNewButton_2);
 
 		txtSe = new JTextField();
@@ -233,7 +260,7 @@ public class Sample {
 				model.setRowCount(0);
 
 				while (!op.data.isEmpty()) {
-					TreeNode node = op.data.remove();
+					node = op.data.remove();
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 				}
@@ -242,7 +269,7 @@ public class Sample {
 		});
 		button.setBounds(451, 27, 117, 25);
 		frame.getContentPane().add(button);
-		
+
 		JButton btnSearchByIsbn = new JButton("search by isbn");
 		btnSearchByIsbn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -250,39 +277,51 @@ public class Sample {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				// String temp = textField_search.getText();
-				TreeNode node = op.searchByIsbn(root, Integer.parseInt(txtSe.getText()));
+				TreeNode node = op.searchByIsbn(root,
+						Integer.parseInt(txtSe.getText()));
 				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
-						node.aSurname });				
+						node.aSurname });
+
 			}
 		});
-		btnSearchByIsbn.setBounds(496, 253, 117, 25);
+		btnSearchByIsbn.setBounds(496, 253, 137, 25);
 		frame.getContentPane().add(btnSearchByIsbn);
 
-		btnDelByName = new JButton("del by name");
+		btnDelByName = new JButton("del by isbn");
 		btnDelByName.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				delByName(txtSe.getText());
+				delByIsbn(Integer.parseInt(txtSe.getText()));
 			}
 		});
-		btnDelByName.setBounds(355, 300, 117, 25);
+		btnDelByName.setBounds(305, 310, 120, 25);
 		frame.getContentPane().add(btnDelByName);
-		
+
 		button_3 = new JButton("New button");
 		button_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				TreeNode node = op.minNode(root);
-				
+
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				// String temp = textField_search.getText();
 				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
-						node.aSurname });				
+						node.aSurname });
 			}
 		});
 		button_3.setBounds(580, 27, 117, 25);
 		frame.getContentPane().add(button_3);
+		
+		JButton btnDelByIsbn = new JButton("del by name");
+		btnDelByIsbn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				delByName(txtSe.getText());
+			}
+		});
+		btnDelByIsbn.setBounds(492, 310, 120, 25);
+		frame.getContentPane().add(btnDelByIsbn);
 
 	}
 }
