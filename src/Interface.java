@@ -172,7 +172,9 @@ public class Interface {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				if(radisbn.SELECTED_ICON_CHANGED_PROPERTY)
+				//commented because there's a error not handled
+				
+				/*if(radisbn.SELECTED_ICON_CHANGED_PROPERTY)
 				{
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					model.setRowCount(0);
@@ -193,7 +195,7 @@ public class Interface {
 				else 
 				{
 					radioselect.setText("Please select ISBN NO or Book Name");
-				}
+				}*/
 			}
 		});
 		search.setBounds(172, 55, 89, 23);
