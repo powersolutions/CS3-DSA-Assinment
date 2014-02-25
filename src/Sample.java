@@ -26,7 +26,7 @@ public class Sample {
 	TreeNode root;
 	Operations op = new Operations();
 
-	private void orderByIsbn() {
+	private void orderByName() {
 		op.getAll(root);
 		while (!op.data.isEmpty()) {
 			TreeNode tem = op.data.remove();
@@ -65,7 +65,7 @@ public class Sample {
 	private JButton btnNewButton_2;
 	private JTextField txtSe;
 	private Scrollable tbScroll;
-	private JButton button_2;
+	private JButton btnDelByName;
 	private JButton button_3;
 
 	/**
@@ -195,14 +195,15 @@ public class Sample {
 		btnNewButton_1.setBounds(322, 27, 117, 25);
 		frame.getContentPane().add(btnNewButton_1);
 
-		btnNewButton_2 = new JButton("New button");
+		btnNewButton_2 = new JButton("search by name");
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				// String temp = textField_search.getText();
-				TreeNode node = op.searchByName(root, txtSe.getText());
+				orderByName();
+				TreeNode node = op.searchByName(name, txtSe.getText());
 				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
 						node.aSurname });
 			}
@@ -227,7 +228,7 @@ public class Sample {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				name = null;
-				orderByIsbn();
+				orderByName();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 
@@ -242,30 +243,30 @@ public class Sample {
 		button.setBounds(451, 27, 117, 25);
 		frame.getContentPane().add(button);
 		
-		JButton button_1 = new JButton("New button");
-		button_1.addMouseListener(new MouseAdapter() {
+		JButton btnSearchByIsbn = new JButton("search by isbn");
+		btnSearchByIsbn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				// String temp = textField_search.getText();
-				TreeNode node = op.searchByIsbn(isbn, Integer.parseInt(txtSe.getText()));
+				TreeNode node = op.searchByIsbn(root, Integer.parseInt(txtSe.getText()));
 				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
 						node.aSurname });				
 			}
 		});
-		button_1.setBounds(496, 253, 117, 25);
-		frame.getContentPane().add(button_1);
+		btnSearchByIsbn.setBounds(496, 253, 117, 25);
+		frame.getContentPane().add(btnSearchByIsbn);
 
-		button_2 = new JButton("New button");
-		button_2.addMouseListener(new MouseAdapter() {
+		btnDelByName = new JButton("del by name");
+		btnDelByName.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				delByName(txtSe.getText());
 			}
 		});
-		button_2.setBounds(355, 300, 117, 25);
-		frame.getContentPane().add(button_2);
+		btnDelByName.setBounds(355, 300, 117, 25);
+		frame.getContentPane().add(btnDelByName);
 		
 		button_3 = new JButton("New button");
 		button_3.addMouseListener(new MouseAdapter() {
