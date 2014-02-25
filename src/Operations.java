@@ -145,33 +145,7 @@ public class Operations {
 
 	TreeNode temp;
 
-	public TreeNode deleteByName(TreeNode node, String bookTitle) {
-		if(node==null){
-			return null;
-		}
-		if(bookTitle.length()==node.bTitle.length() && bookTitle.equals(node.bTitle)){
-			if(node.left==null && node.right==null){
-				return null;
-			}
-			if(node.left==null){
-				return node.right;
-			}
-			if(node.right==null){
-				return node.left;
-			}
-			node = minNode(node);
-			node.right = deleteByName(node.right, bookTitle);
-			return node;
-		}else if(bookTitle.length()<node.bTitle.length()){
-			
-			node.left=deleteByName(node.left, bookTitle);
-			return node;
-		}else{
-			node.right = deleteByName(node.right, bookTitle);
-			return node;
-		}
-	}
-
+	
 	public TreeNode deleteByIsbn(TreeNode node, int isbn) {
 		if (node == null) {
 			return null;
