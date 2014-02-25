@@ -177,38 +177,5 @@ public class Operations {
 		}
 		return node;
 	}
-	
-	public TreeNode deleteByISBN(TreeNode node, String bookTitle) {
-
-		TreeNode p, p2, n;
-
-		if (node.bTitle.equals(bookTitle)) {
-			if (node.left == null && node.right == null) {
-				return null;
-			} else if (node.left == null) {
-				p = node.right;
-				return p;
-			} else if (node.right == null) {
-				p = node.left;
-				return p;
-			} else {
-				p2 = node.right;
-				p = node.left;
-				while (p.left != null) {
-					p = p.left;
-				}
-				p.left = node.left;
-				return p2;
-			}
-		}
-		if (bookTitle.length() < node.bTitle.length()) {
-			n = deleteByName(node.left, bookTitle);
-			node.left = n;
-		} else {
-			n = deleteByName(node.right, bookTitle);
-			node.right = n;
-		}
-		return node;
-	}
 
 }
