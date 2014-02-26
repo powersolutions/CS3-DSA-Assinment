@@ -215,19 +215,28 @@ public class Interface {
 					model.setRowCount(0);
 					// String temp = textsearch.getText();
 
-					TreeNode node = op.searchByIsbn(root,
-							Integer.parseInt(textsearch.getText()));
-					model.addRow(new Object[] { node.bTitle, node.ISBN,
-							node.aName, node.aSurname });
+					TreeNode node;
+					try {
+						node = op.searchByIsbn(root,
+								Integer.parseInt(textsearch.getText()));
+						model.addRow(new Object[] { node.bTitle, node.ISBN,
+								node.aName, node.aSurname });
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Invalid value",
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
+
 				} else if (radbok.isSelected()) {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
 					model.setRowCount(0);
 					// String temp = textsearch.getText();
 
-					orderByName();
 					TreeNode node;
 					try {
+						orderByName();
 						node = op.searchByName(root, textsearch.getText());
 						model.addRow(new Object[] { node.bTitle, node.ISBN,
 								node.aName, node.aSurname });
@@ -237,7 +246,7 @@ public class Interface {
 						JOptionPane.showMessageDialog(null, "Invalid value",
 								"Database Error", JOptionPane.ERROR_MESSAGE);
 					}
-					
+
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
 					JOptionPane.showMessageDialog(null,
@@ -364,12 +373,15 @@ public class Interface {
 								JOptionPane.YES_NO_OPTION);
 						if (x == 0) {
 							try {
-								op.deleteByIsbn(root,
+
+								root = op.deleteByIsbn(root,
 										Integer.parseInt(textField.getText()));
 							} catch (Exception e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
-								JOptionPane.showMessageDialog(null, "Invalid value", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null,
+										"Invalid value", "Error",
+										JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					} else if (radioButton_1.isSelected()) {

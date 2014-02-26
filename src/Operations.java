@@ -121,7 +121,7 @@ public class Operations {
 		return n;
 	}
 
-	public TreeNode searchByIsbn(TreeNode node, int isbn) {
+	public TreeNode searchByIsbn(TreeNode node, int isbn) throws Exception{
 		n = null;
 		if (node.ISBN == isbn) {
 			n = node;

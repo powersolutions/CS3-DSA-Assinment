@@ -70,7 +70,7 @@ public class Sample {
 		}
 		name=null;
 	}
-	private void delByIsbn(int isbn){
+	private void delByIsbn(int isbn) throws Exception{
 		if(root==null){
 			txtSe.setText("emty db");
 		}
@@ -299,10 +299,20 @@ public class Sample {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
 				// String temp = textField_search.getText();
-				TreeNode node = op.searchByIsbn(root,
-						Integer.parseInt(txtSe.getText()));
-				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
-						node.aSurname });
+				TreeNode node;
+				try {
+					node = op.searchByIsbn(root,
+							Integer.parseInt(txtSe.getText()));
+					model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+							node.aSurname });
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 
 			}
 		});
@@ -313,7 +323,15 @@ public class Sample {
 		btnDelByName.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				delByIsbn(Integer.parseInt(txtSe.getText()));
+				try {
+					delByIsbn(Integer.parseInt(txtSe.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnDelByName.setBounds(305, 310, 120, 25);
