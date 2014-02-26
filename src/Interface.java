@@ -24,7 +24,29 @@ public class Interface {
 	TreeNode isbn;
 	TreeNode root;
 	Operations op = new Operations();
+	TreeNode name=null;
 
+	
+	private void orderByName() 
+	{
+		name=null;
+		op.getAll(root);
+		while (!op.data.isEmpty()) {
+			TreeNode tem = op.data.remove();
+			if (name == null) {
+				name = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
+						tem.aSurname);
+			} else {
+
+				op.insert(name, tem.bTitle, tem.ISBN, tem.aName, tem.aSurname);
+			}
+		}
+		// op.orderByIsbn(root, isbn);
+		op.getAll(name);
+		//name = null;
+
+	}
+	
 	private void orderByIsbn() {
 		op.getAll(root);
 		while (!op.data.isEmpty()) {
@@ -157,7 +179,7 @@ public class Interface {
 		panel_1.setLayout(null);
 
 		ButtonGroup btnGroupRmove = new ButtonGroup();
-		
+
 		final JRadioButton radisbn = new JRadioButton("ISBN No");
 		radisbn.setBounds(23, 23, 81, 23);
 		panel_1.add(radisbn);
@@ -165,7 +187,7 @@ public class Interface {
 		final JRadioButton radbok = new JRadioButton("Book Name");
 		radbok.setBounds(23, 49, 109, 23);
 		panel_1.add(radbok);
-		
+
 		btnGroupRmove.add(radisbn);
 		btnGroupRmove.add(radbok);
 
@@ -175,7 +197,7 @@ public class Interface {
 		textsearch.setColumns(10);
 
 		radioselect = new JLabel("");
-		radioselect.setBounds(33, 79, 46, 14);
+		radioselect.setBounds(23, 86, 238, 14);
 		panel_1.add(radioselect);
 
 		JButton search = new JButton("Search");
@@ -187,17 +209,21 @@ public class Interface {
 				if (radisbn.isSelected()) {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
-					model.setRowCount(0); // String temp =
-					textsearch.getText();
-					TreeNode node = op.searchByIsbn(isbn,
+					model.setRowCount(0);
+					//String temp = textsearch.getText();
+					
+					
+					TreeNode node = op.searchByIsbn(root,
 							Integer.parseInt(textsearch.getText()));
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 				} else if (radbok.isSelected()) {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
-					model.setRowCount(0); // String temp =
-					textsearch.getText();
+					model.setRowCount(0);
+					//String temp = textsearch.getText();
+					
+					orderByName();
 					TreeNode node = op.searchByName(root, textsearch.getText());
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
@@ -273,9 +299,9 @@ public class Interface {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (txtBookName.getText().equals(null)) {
-					JOptionPane.showMessageDialog(null,"Error:Book Name is null" );
-				}
-				else {
+					JOptionPane.showMessageDialog(null,
+							"Error:Book Name is null");
+				} else {
 					if (root == null) {
 						root = new TreeNode(txtBookName.getText(), Integer
 								.parseInt(txtISBN.getText()), txtAuthorFname
