@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -262,20 +263,26 @@ public class Interface {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (root == null) {
-					root = new TreeNode(txtBookName.getText(), Integer
-							.parseInt(txtISBN.getText()), txtAuthorFname
-							.getText(), txtAuthorSname.getText());
-				} else {
-					op.insert(root, txtBookName.getText(),
-							Integer.parseInt(txtISBN.getText()),
-							txtAuthorFname.getText(), txtAuthorSname.getText());
-
+				if (txtBookName.getText().equals(null)) {
+					JOptionPane.showMessageDialog(null,"Error:Book Name is null" );
 				}
-				txtBookName.setText(null);
-				txtISBN.setText(null);
-				txtAuthorFname.setText(null);
-				txtAuthorSname.setText(null);
+				else {
+					if (root == null) {
+						root = new TreeNode(txtBookName.getText(), Integer
+								.parseInt(txtISBN.getText()), txtAuthorFname
+								.getText(), txtAuthorSname.getText());
+					} else {
+						op.insertByIsbn(root, txtBookName.getText(),
+								Integer.parseInt(txtISBN.getText()),
+								txtAuthorFname.getText(),
+								txtAuthorSname.getText());
+
+					}
+					txtBookName.setText(null);
+					txtISBN.setText(null);
+					txtAuthorFname.setText(null);
+					txtAuthorSname.setText(null);
+				}
 			}
 
 		});
@@ -284,7 +291,7 @@ public class Interface {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (radioButton.isSelected()) {
-					//op.
+					// op.
 				} else {
 				}
 			}
