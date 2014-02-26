@@ -339,20 +339,34 @@ public class Interface {
 					JOptionPane.showMessageDialog(null,
 							"Error:Author Surname is null");
 				} else {
+					try {
+						if (root == null) {
+							root = new TreeNode(txtBookName.getText(), Integer
+									.parseInt(txtISBN.getText()),
+									txtAuthorFname.getText(), txtAuthorSname
+											.getText());
+							txtBookName.setText(null);
+							txtISBN.setText(null);
+							txtAuthorFname.setText(null);
+							txtAuthorSname.setText(null);
+						} else {
 
-					if (root == null) {
-						root = new TreeNode(txtBookName.getText(), Integer
-								.parseInt(txtISBN.getText()), txtAuthorFname
-								.getText(), txtAuthorSname.getText());
-					} else {
-						op.insertByIsbn(root, txtBookName.getText(),
-								Integer.parseInt(txtISBN.getText()),
-								txtAuthorFname.getText(),
-								txtAuthorSname.getText());
-						txtBookName.setText(null);
-						txtISBN.setText(null);
-						txtAuthorFname.setText(null);
-						txtAuthorSname.setText(null);
+							op.insertByIsbn(root, txtBookName.getText(),
+									Integer.parseInt(txtISBN.getText()),
+									txtAuthorFname.getText(),
+									txtAuthorSname.getText());
+
+							txtBookName.setText(null);
+							txtISBN.setText(null);
+							txtAuthorFname.setText(null);
+							txtAuthorSname.setText(null);
+						}
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null,
+								"input values are not in correct format",
+								"Insert Error", JOptionPane.ERROR_MESSAGE);
 					}
 
 				}

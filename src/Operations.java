@@ -45,7 +45,7 @@ public class Operations {
 	}
 
 	public void insertByIsbn(TreeNode node, String bookTitle, int ISBN,
-			String autherName, String autherSurname) {
+			String autherName, String autherSurname) throws Exception{
 		if (ISBN < node.ISBN) {
 			if (node.left != null) {
 				insertByIsbn(node.left, bookTitle, ISBN, autherName,
@@ -64,7 +64,7 @@ public class Operations {
 		}
 	}
 
-	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) {
+	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) throws Exception {
 		// data = null;
 
 		while (!data.isEmpty()) {
