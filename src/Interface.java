@@ -156,6 +156,8 @@ public class Interface {
 		panel_2.add(panel_1);
 		panel_1.setLayout(null);
 
+		ButtonGroup btnGroupRmove = new ButtonGroup();
+		
 		final JRadioButton radisbn = new JRadioButton("ISBN No");
 		radisbn.setBounds(23, 23, 81, 23);
 		panel_1.add(radisbn);
@@ -163,6 +165,9 @@ public class Interface {
 		final JRadioButton radbok = new JRadioButton("Book Name");
 		radbok.setBounds(23, 49, 109, 23);
 		panel_1.add(radbok);
+		
+		btnGroupRmove.add(radisbn);
+		btnGroupRmove.add(radbok);
 
 		textsearch = new JTextField();
 		textsearch.setBounds(162, 24, 123, 20);
