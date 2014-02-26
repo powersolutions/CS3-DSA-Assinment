@@ -155,11 +155,11 @@ public class Interface {
 		panel_2.add(panel_1);
 		panel_1.setLayout(null);
 
-		JRadioButton radisbn = new JRadioButton("ISBN No");
+		final JRadioButton radisbn = new JRadioButton("ISBN No");
 		radisbn.setBounds(23, 23, 81, 23);
 		panel_1.add(radisbn);
 
-		JRadioButton radbok = new JRadioButton("Book Name");
+		final JRadioButton radbok = new JRadioButton("Book Name");
 		radbok.setBounds(23, 49, 109, 23);
 		panel_1.add(radbok);
 
@@ -178,23 +178,27 @@ public class Interface {
 			public void mouseClicked(MouseEvent arg0) {
 				// commented because there's a error not handled
 
-				/*
-				 * if(radisbn.SELECTED_ICON_CHANGED_PROPERTY) {
-				 * DefaultTableModel model = (DefaultTableModel)
-				 * table.getModel(); model.setRowCount(0); // String temp =
-				 * textField_search.getText(); TreeNode node =
-				 * op.searchByIsbn(isbn,
-				 * Integer.parseInt(textsearch.getText())); model.addRow(new
-				 * Object[] { node.bTitle, node.ISBN, node.aName, node.aSurname
-				 * }); } else if (radbok.SELECTED_ICON_CHANGED_PROPERTY ) {
-				 * DefaultTableModel model = (DefaultTableModel)
-				 * table.getModel(); model.setRowCount(0); // String temp =
-				 * textField_search.getText(); TreeNode node =
-				 * op.searchByName(root, textsearch.getText()); model.addRow(new
-				 * Object[] { node.bTitle, node.ISBN, node.aName, node.aSurname
-				 * }); } else {
-				 * radioselect.setText("Please select ISBN NO or Book Name"); }
-				 */
+				if (radisbn.isSelected()) {
+					DefaultTableModel model = (DefaultTableModel) table
+							.getModel();
+					model.setRowCount(0); // String temp =
+					textsearch.getText();
+					TreeNode node = op.searchByIsbn(isbn,
+							Integer.parseInt(textsearch.getText()));
+					model.addRow(new Object[] { node.bTitle, node.ISBN,
+							node.aName, node.aSurname });
+				} else if (radbok.isSelected()) {
+					DefaultTableModel model = (DefaultTableModel) table
+							.getModel();
+					model.setRowCount(0); // String temp =
+					textsearch.getText();
+					TreeNode node = op.searchByName(root, textsearch.getText());
+					model.addRow(new Object[] { node.bTitle, node.ISBN,
+							node.aName, node.aSurname });
+				} else {
+					radioselect.setText("Please select ISBN NO or Book Name");
+				}
+
 			}
 		});
 		search.setBounds(172, 55, 89, 23);
@@ -284,7 +288,7 @@ public class Interface {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (radioButton.isSelected()) {
-					//op.
+					// op.
 				} else {
 				}
 			}
