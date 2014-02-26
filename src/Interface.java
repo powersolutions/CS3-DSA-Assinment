@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.border.LineBorder;
 
 public class Interface {
 
@@ -104,9 +105,9 @@ public class Interface {
 		txtBookName.setColumns(10);
 
 		JLabel lblBookName = new JLabel("Book Name");
+		lblBookName.setBounds(10, 59, 117, 14);
 		lblBookName.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblBookName.setLabelFor(txtBookName);
-		lblBookName.setBounds(10, 59, 117, 14);
 		panel.add(lblBookName);
 
 		txtISBN = new JTextField();
@@ -115,8 +116,8 @@ public class Interface {
 		txtISBN.setColumns(10);
 
 		JLabel lblISBN = new JLabel("ISBN No");
-		lblISBN.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblISBN.setBounds(10, 102, 117, 14);
+		lblISBN.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(lblISBN);
 
 		txtAuthorFname = new JTextField();
@@ -125,8 +126,8 @@ public class Interface {
 		txtAuthorFname.setColumns(10);
 
 		JLabel lblAuthorFname = new JLabel("Author Name");
-		lblAuthorFname.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblAuthorFname.setBounds(10, 147, 117, 14);
+		lblAuthorFname.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(lblAuthorFname);
 
 		txtAuthorSname = new JTextField();
@@ -135,18 +136,17 @@ public class Interface {
 		txtAuthorSname.setColumns(10);
 
 		JLabel lblAuthorSname = new JLabel("Author Surname");
-		lblAuthorSname.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblAuthorSname.setBounds(10, 189, 117, 14);
+		lblAuthorSname.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(lblAuthorSname);
 
 		btnAdd = new JButton("Add");
-		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAdd.setBounds(124, 230, 89, 23);
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(btnAdd);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "Search",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Search", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)));
 		panel_2.setBounds(268, 11, 315, 282);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
@@ -236,8 +236,7 @@ public class Interface {
 		panel_1.add(searchall);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new TitledBorder(null, "Remove",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Remove", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)));
 		panel_4.setBounds(595, 14, 306, 279);
 		frame.getContentPane().add(panel_4);
 		panel_4.setLayout(null);
@@ -267,13 +266,23 @@ public class Interface {
 
 		JButton button = new JButton("Delete");
 		button.setBounds(168, 64, 89, 23);
-		panel_3.add(button);
+		panel_3.add(button); 
 
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (txtBookName.getText().equals(null)) {
+				if (txtBookName.getText().equals(null) || txtBookName.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Error:Book Name is null" );
+				}
+				else if (txtISBN.getText().equals(null) ||txtISBN.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Error:Book Name is null");
+				}
+				else if (txtAuthorFname.getText().equals(null) ||txtAuthorFname.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Error:Author First Name is null");
+				}
+				else if (txtAuthorSname.getText().equals(null)||txtAuthorSname.getText().equals("")){
+					
+					JOptionPane.showMessageDialog(null, "Error:Author Surname is null");
 				}
 				else {
 					if (root == null) {
