@@ -143,32 +143,50 @@ public class Operations {
 		return node;
 	}
 
-	TreeNode temp;
+	// TreeNode temp;
 
-	
 	public TreeNode deleteByIsbn(TreeNode node, int isbn) {
-		if (node == null) {
-			return null;
-		}
-		if (isbn == node.ISBN) {
-			if (node.left == null && node.right == null) {
-				return null;
-			}
-			if (node.left == null) {
-				return node.right;
-			}
-			if (node.right == null) {
-				return node.left;
-			}
-			node = minNode(node);
-			node.right = deleteByIsbn(node.right, isbn);
-			return node;
-		} else if (isbn < node.ISBN) {
-			node.left = deleteByIsbn(node.left, isbn);
-			return node;
-		} else {
-			node.right = deleteByIsbn(node.right, isbn);
-			return node;
-		}
+
+		
+		TreeNode p, p2, n;
+        if (node.ISBN == isbn)
+        {
+        	TreeNode lt, rt;
+            lt = node.left;
+            rt = node.right;
+            if (lt == null && rt == null)
+                return null;
+            else if (lt == null)
+            {
+                p = rt;
+                return p;
+            }
+            else if (rt == null)
+            {
+                p = lt;
+                return p;
+            }
+            else
+            {
+                p2 = rt;
+                p = rt;
+                while (p.left != null)
+                    p = p.left;
+                p.left=lt;
+                return p2;
+            }
+        }
+        if (isbn < node.ISBN)
+        {
+            n = deleteByIsbn(node.left, isbn);
+            node.left = n;
+        }
+        else
+        {
+            n = deleteByIsbn(node.right, isbn);
+            node.right=n;             
+        }
+        return node;
+	
 	}
 }

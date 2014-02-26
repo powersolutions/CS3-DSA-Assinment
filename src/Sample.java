@@ -48,6 +48,7 @@ public class Sample {
 	}
 
 	private void delByName(String book) {
+		orderByName();
 		if(name==null){
 			txtSe.setText("empty db");
 		}else{
@@ -57,9 +58,10 @@ public class Sample {
 			}else{
 				root = op.deleteByIsbn(root, temp.ISBN);
 				txtSe.setText("deleted");
-				//name=null;
+				name=null;
 			}
 		}
+		name=null;
 	}
 	private void delByIsbn(int isbn){
 		if(root==null){
@@ -71,7 +73,7 @@ public class Sample {
 				txtSe.setText("invalid isbn");
 			}
 			else{
-				root = op.deleteByIsbn(root, isbn);
+				root = op.deleteByIsbn(root,temp.ISBN);
 				txtSe.setText("deleted");
 			}
 		}
@@ -254,7 +256,7 @@ public class Sample {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				name = null;
+				name=null;
 				orderByName();
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				model.setRowCount(0);
@@ -264,6 +266,7 @@ public class Sample {
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 				}
+				name=null;
 			}
 
 		});
