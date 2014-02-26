@@ -273,11 +273,17 @@ public class Interface {
 				// tab.addRow(new
 				// Object[]{"Book Name","ISBN NO","Author","Surname"});
 				op.getAll(root);
+				
 				while (!op.data.isEmpty()) {
 					TreeNode node = op.data.remove();
 					tab.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 				}
+				Table t = new Table();
+				op.getAll(root);
+				t.val=op.data;
+				t.loadData();
+				t.setVisible(true);
 			}
 		});
 		searchall.setBounds(95, 111, 114, 23);
