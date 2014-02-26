@@ -103,7 +103,7 @@ public class Operations {
 
 	TreeNode n;
 
-	public TreeNode searchByName(TreeNode node, String bookName) {
+	public TreeNode searchByName(TreeNode node, String bookName) throws Exception {
 		n = null;
 		if (node.bTitle.length() == bookName.length()) {
 			if (node.bTitle.equals(bookName)) {
@@ -145,7 +145,7 @@ public class Operations {
 
 	// TreeNode temp;
 
-	public TreeNode deleteByIsbn(TreeNode node, int isbn) {
+	public TreeNode deleteByIsbn(TreeNode node, int isbn) throws Exception {
 
 		
 		TreeNode p, p2, n;

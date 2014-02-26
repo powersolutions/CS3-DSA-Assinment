@@ -52,14 +52,21 @@ public class Sample {
 		if(name==null){
 			txtSe.setText("empty db");
 		}else{
-			TreeNode temp = op.searchByName(name, book);
-			if(temp==null){
-				txtSe.setText("invalid book name");
-			}else{
-				root = op.deleteByIsbn(root, temp.ISBN);
-				txtSe.setText("deleted");
-				name=null;
+			TreeNode temp;
+			try {
+				temp = op.searchByName(name, book);
+				if(temp==null){
+					txtSe.setText("invalid book name");
+				}else{
+					root = op.deleteByIsbn(root, temp.ISBN);
+					txtSe.setText("deleted");
+					name=null;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
 		}
 		name=null;
 	}
@@ -73,7 +80,12 @@ public class Sample {
 				txtSe.setText("invalid isbn");
 			}
 			else{
-				root = op.deleteByIsbn(root,temp.ISBN);
+				try {
+					root = op.deleteByIsbn(root,temp.ISBN);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				txtSe.setText("deleted");
 			}
 		}
@@ -230,11 +242,18 @@ public class Sample {
 				// String temp = textField_search.getText();
 
 				orderByName();
-				TreeNode node = op.searchByName(name, txtSe.getText());
-				model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
-						node.aSurname });
-				//name = null;
-				op.data.clear();
+				TreeNode node;
+				try {
+					node = op.searchByName(name, txtSe.getText());
+					model.addRow(new Object[] { node.bTitle, node.ISBN, node.aName,
+							node.aSurname });
+					//name = null;
+					op.data.clear();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
 			}
 		});
 		btnNewButton_2.setBounds(305, 253, 146, 25);

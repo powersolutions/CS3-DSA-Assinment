@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -22,15 +23,12 @@ import javax.swing.border.LineBorder;
 
 public class Interface {
 
-	TreeNode isbn;
 	TreeNode root;
 	Operations op = new Operations();
-	TreeNode name=null;
+	TreeNode name = null;
 
-	
-	private void orderByName() 
-	{
-		name=null;
+	private void orderByName() {
+		name = null;
 		op.getAll(root);
 		while (!op.data.isEmpty()) {
 			TreeNode tem = op.data.remove();
@@ -42,28 +40,31 @@ public class Interface {
 				op.insert(name, tem.bTitle, tem.ISBN, tem.aName, tem.aSurname);
 			}
 		}
-		// op.orderByIsbn(root, isbn);
+
 		op.getAll(name);
-		//name = null;
 
 	}
-	
-	private void orderByIsbn() {
-		op.getAll(root);
-		while (!op.data.isEmpty()) {
-			TreeNode tem = op.data.remove();
-			if (isbn == null) {
-				isbn = new TreeNode(tem.bTitle, tem.ISBN, tem.aName,
-						tem.aSurname);
-			} else {
 
-				op.insertByIsbn(isbn, tem.bTitle, tem.ISBN, tem.aName,
-						tem.aSurname);
+	private void delByName(String book) {
+		orderByName();
+		if (name == null) {
+			JOptionPane.showMessageDialog(null, "Database is empty",
+					"Database Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			TreeNode temp;
+
+			try {
+				temp = op.searchByName(name, book);
+				root = op.deleteByIsbn(root, temp.ISBN);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Invalid value",
+						"Database Error", JOptionPane.ERROR_MESSAGE);
 			}
-		}
-		// op.orderByIsbn(root, isbn);
-		op.getAll(isbn);
 
+		}
+		name = null;
 	}
 
 	private JFrame frame;
@@ -168,7 +169,9 @@ public class Interface {
 		panel.add(btnAdd);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Search", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)));
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
+				229)), "Search", TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(0, 0, 205)));
 		panel_2.setBounds(268, 11, 315, 282);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
@@ -210,9 +213,8 @@ public class Interface {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
 					model.setRowCount(0);
-					//String temp = textsearch.getText();
-					
-					
+					// String temp = textsearch.getText();
+
 					TreeNode node = op.searchByIsbn(root,
 							Integer.parseInt(textsearch.getText()));
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
@@ -221,15 +223,25 @@ public class Interface {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
 					model.setRowCount(0);
-					//String temp = textsearch.getText();
-					
+					// String temp = textsearch.getText();
+
 					orderByName();
-					TreeNode node = op.searchByName(root, textsearch.getText());
-					model.addRow(new Object[] { node.bTitle, node.ISBN,
-							node.aName, node.aSurname });
+					TreeNode node;
+					try {
+						node = op.searchByName(root, textsearch.getText());
+						model.addRow(new Object[] { node.bTitle, node.ISBN,
+								node.aName, node.aSurname });
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Invalid value",
+								"Database Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
 				} else {
-					//radioselect.setText("Please select ISBN NO or Book Name");
-					JOptionPane.showMessageDialog(null, "Please select ISBN NO or Book Name");
+					// radioselect.setText("Please select ISBN NO or Book Name");
+					JOptionPane.showMessageDialog(null,
+							"Please select ISBN NO or Book Name");
 				}
 
 			}
@@ -263,7 +275,9 @@ public class Interface {
 		panel_1.add(searchall);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Remove", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)));
+		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
+				229)), "Remove", TitledBorder.LEADING, TitledBorder.TOP, null,
+				new Color(0, 0, 205)));
 		panel_4.setBounds(595, 14, 306, 279);
 		frame.getContentPane().add(panel_4);
 		panel_4.setLayout(null);
@@ -293,25 +307,29 @@ public class Interface {
 
 		JButton button = new JButton("Delete");
 		button.setBounds(168, 64, 89, 23);
-		panel_3.add(button); 
+		panel_3.add(button);
 
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (txtBookName.getText().equals(null)|| txtBookName.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,"Error:Book Name is null" );
-				}
-				else if (txtISBN.getText().equals(null) ||txtISBN.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Error:Book ISBN is null");
-				}
-				else if (txtAuthorFname.getText().equals(null) ||txtAuthorFname.getText().equals("")){
-					JOptionPane.showMessageDialog(null, "Error:Author First Name is null");
-				}
-				else if (txtAuthorSname.getText().equals(null)||txtAuthorSname.getText().equals("")){
-					JOptionPane.showMessageDialog(null, "Error:Author Surname is null");
-				}
-				else {
+				if (txtBookName.getText().equals(null)
+						|| txtBookName.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Error:Book Name is null");
+				} else if (txtISBN.getText().equals(null)
+						|| txtISBN.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Error:Book ISBN is null");
+				} else if (txtAuthorFname.getText().equals(null)
+						|| txtAuthorFname.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Error:Author First Name is null");
+				} else if (txtAuthorSname.getText().equals(null)
+						|| txtAuthorSname.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Error:Author Surname is null");
+				} else {
 
 					if (root == null) {
 						root = new TreeNode(txtBookName.getText(), Integer
@@ -327,19 +345,41 @@ public class Interface {
 						txtAuthorFname.setText(null);
 						txtAuthorSname.setText(null);
 					}
-					
+
 				}
 			}
 
 		});
-		
 
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (radioButton.isSelected()) {
-					// op.
+				if (textField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Error:Specify a value to remove");
 				} else {
+					if (radioButton.isSelected()) {
+						int x = JOptionPane.showConfirmDialog(null,
+								"are you sure?", "Remove confirm",
+								JOptionPane.YES_NO_OPTION);
+						if (x == 0) {
+							try {
+								op.deleteByIsbn(root,
+										Integer.parseInt(textField.getText()));
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Invalid value", "Error", JOptionPane.ERROR_MESSAGE);
+							}
+						}
+					} else if (radioButton_1.isSelected()) {
+						int x = JOptionPane.showConfirmDialog(null,
+								"are you sure?", "Remove confirm",
+								JOptionPane.YES_NO_OPTION);
+						if (x == 0) {
+							delByName(textField.getText());
+						}
+					}
 				}
 			}
 
@@ -347,4 +387,3 @@ public class Interface {
 
 	}
 }
-		
