@@ -299,25 +299,18 @@ public class Interface {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (txtBookName.getText().equals(null) || txtBookName.getText().equals("")) {
+				if (txtBookName.getText().equals(null)|| txtBookName.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"Error:Book Name is null" );
 				}
 				else if (txtISBN.getText().equals(null) ||txtISBN.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Error:Book Name is null");
+					JOptionPane.showMessageDialog(null, "Error:Book ISBN is null");
 				}
 				else if (txtAuthorFname.getText().equals(null) ||txtAuthorFname.getText().equals("")){
 					JOptionPane.showMessageDialog(null, "Error:Author First Name is null");
 				}
 				else if (txtAuthorSname.getText().equals(null)||txtAuthorSname.getText().equals("")){
-					
 					JOptionPane.showMessageDialog(null, "Error:Author Surname is null");
 				}
-				else {
-
-				if (txtBookName.getText().equals(null)) {
-					JOptionPane.showMessageDialog(null,
-							"Error:Book Name is null");
-				} 
 				else {
 
 					if (root == null) {
@@ -353,4 +346,5 @@ public class Interface {
 		});
 
 	}
+}
 		
