@@ -228,7 +228,8 @@ public class Interface {
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 				} else {
-					radioselect.setText("Please select ISBN NO or Book Name");
+					//radioselect.setText("Please select ISBN NO or Book Name");
+					JOptionPane.showMessageDialog(null, "Please select ISBN NO or Book Name");
 				}
 
 			}
