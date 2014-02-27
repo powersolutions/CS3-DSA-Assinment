@@ -5,6 +5,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JPanel;
+import javax.swing.JEditorPane;
+import javax.swing.JTextPane;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 
 public class openpage {
@@ -47,9 +51,5 @@ public class openpage {
 		lblNewLabel.setFont(new Font("Bodoni MT Black", Font.ITALIC, 36));
 		lblNewLabel.setBounds(33, 21, 311, 43);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(148, 165, 128, 74);
-		frame.getContentPane().add(panel);
 	}
 }
