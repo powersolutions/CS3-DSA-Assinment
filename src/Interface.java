@@ -237,7 +237,7 @@ public class Interface {
 					TreeNode node;
 					try {
 						orderByName();
-						node = op.searchByName(root, textsearch.getText());
+						node = op.searchByName(name, textsearch.getText());
 						model.addRow(new Object[] { node.bTitle, node.ISBN,
 								node.aName, node.aSurname });
 					} catch (Exception e) {

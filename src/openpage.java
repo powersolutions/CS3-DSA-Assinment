@@ -67,10 +67,13 @@ public class openpage {
 
 			}
 		});
+
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			Interface in;
+
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Interface in = new Interface();
+				in = new Interface();
 				in.setvisible(true);
 				this.setvisible(false);
 
@@ -81,12 +84,14 @@ public class openpage {
 
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("img/Untitled-5.jpg")));
+		btnNewButton.setIcon(new ImageIcon(getClass().getClassLoader()
+				.getResource("img/Untitled-5.jpg")));
 		btnNewButton.setBounds(23, 25, 140, 109);
 		frame.getContentPane().add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("img/Untitled-6.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader()
+				.getResource("img/Untitled-6.jpg")));
 		lblNewLabel.setBounds(23, 37, 471, 256);
 		frame.getContentPane().add(lblNewLabel);
 
