@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -21,6 +22,10 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.Normalizer.Form;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
 
 
 public class openpage {
@@ -63,13 +68,27 @@ public class openpage {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				
+			}
+		});
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				Interface in = new Interface();
 				in.setvisible(true);
+				this.setvisible(false);
 				
+				
+				
+				
+			}
+
+			private void setvisible(boolean b) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
