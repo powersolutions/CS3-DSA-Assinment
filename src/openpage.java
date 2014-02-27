@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 
 public class openpage {
@@ -53,9 +55,14 @@ public class openpage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Isuru\\Documents\\GitHub\\CS3-DSA-Assinment\\Untitled-5.jpg"));
+		btnNewButton.setBounds(23, 25, 140, 109);
+		frame.getContentPane().add(btnNewButton);
+		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Isuru\\Documents\\GitHub\\CS3-DSA-Assinment\\Untitled-3.jpg"));
-		lblNewLabel.setBounds(31, 28, 472, 256);
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Isuru\\Documents\\GitHub\\CS3-DSA-Assinment\\Untitled-6.jpg"));
+		lblNewLabel.setBounds(23, 37, 471, 256);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("13208319 - LAKAL SHAKTHI MANAWADU");
