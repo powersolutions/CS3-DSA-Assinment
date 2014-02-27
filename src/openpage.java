@@ -67,9 +67,9 @@ public class openpage {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				//Interface in = new Interface();
-				new Interface().setvisible(true);
-				//i
+				Interface in = new Interface();
+				in.setvisible(true);
+				
 				
 			}
 		});
