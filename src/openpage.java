@@ -10,10 +10,17 @@ import javax.xml.bind.Binder;
 
 import java.awt.Font;
 import java.awt.SystemColor;
+
 import javax.swing.UIManager;
+
 import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.Normalizer.Form;
 
 
 public class openpage {
@@ -56,12 +63,22 @@ public class openpage {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Isuru\\Documents\\GitHub\\CS3-DSA-Assinment\\Untitled-5.jpg"));
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				//Interface in = new Interface();
+				new Interface().setvisible(true);
+				//i
+				
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon("Resources\\Untitled-5.jpg"));
 		btnNewButton.setBounds(23, 25, 140, 109);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Isuru\\Documents\\GitHub\\CS3-DSA-Assinment\\Untitled-6.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("Resources\\Untitled-6.jpg"));
 		lblNewLabel.setBounds(23, 37, 471, 256);
 		frame.getContentPane().add(lblNewLabel);
 		
