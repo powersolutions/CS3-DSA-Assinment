@@ -20,6 +20,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
+import javax.swing.JScrollPane;
 
 public class Interface extends JFrame {
 
@@ -261,12 +262,6 @@ public class Interface extends JFrame {
 		search.setBounds(172, 55, 89, 23);
 		panel_1.add(search);
 
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
-				"New column", "New column", "New column", "New column" }));
-		table.setBounds(10, 145, 275, 90);
-		panel_1.add(table);
-
 		JButton searchall = new JButton("Search All");
 		searchall.addMouseListener(new MouseAdapter() {
 			@Override
@@ -275,13 +270,7 @@ public class Interface extends JFrame {
 				tab.setRowCount(0);
 				// tab.addRow(new
 				// Object[]{"Book Name","ISBN NO","Author","Surname"});
-				op.getAll(root);
 				
-				while (!op.data.isEmpty()) {
-					TreeNode node = op.data.remove();
-					tab.addRow(new Object[] { node.bTitle, node.ISBN,
-							node.aName, node.aSurname });
-				}
 				Table t = new Table();
 				op.getAll(root);
 				t.val=op.data;
@@ -291,6 +280,15 @@ public class Interface extends JFrame {
 		});
 		searchall.setBounds(95, 111, 114, 23);
 		panel_1.add(searchall);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 146, 273, 91);
+		panel_1.add(scrollPane);
+		
+				table = new JTable();
+				scrollPane.setViewportView(table);
+				table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
+						"New column", "New column", "New column", "New column" }));
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
