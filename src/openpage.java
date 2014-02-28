@@ -59,7 +59,8 @@ public class openpage extends JFrame {
 		//frame = new JFrame();
 		getContentPane().setBackground(new Color(240, 240, 240));
 		setBounds(100, 100, 916, 355);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("SPUTNIKS");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JButton btnNewButton = new JButton("");

@@ -111,6 +111,7 @@ public class Interface extends JFrame {
 		//frame = new JFrame();
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
 		setBounds(100, 100, 916, 355);
+		setTitle("Tree Node App");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
@@ -252,8 +253,7 @@ public class Interface extends JFrame {
 
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
-					JOptionPane.showMessageDialog(null,
-							"Please select ISBN NO or Book Name");
+					JOptionPane.showMessageDialog(null,"Please select ISBN NO or Book Name");
 				}
 
 			}
