@@ -21,7 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 
-public class Interface {
+public class Interface extends JFrame {
 
 	TreeNode root;
 	Operations op = new Operations();
@@ -67,7 +67,7 @@ public class Interface {
 		name = null;
 	}
 
-	private JFrame frame;
+	//private JFrame frame;
 	private JTextField txtBookName;
 	private JTextField txtISBN;
 	private JTextField txtAuthorFname;
@@ -86,7 +86,7 @@ public class Interface {
 			public void run() {
 				try {
 					Interface window = new Interface();
-					window.frame.setVisible(true);
+					//window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -97,19 +97,22 @@ public class Interface {
 	/**
 	 * Create the application.
 	 */
-	public Interface() {
+	public Interface() 
+	{
+		//setvisible(true);
 		initialize();
+		setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		frame.setBounds(100, 100, 916, 355);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		//frame = new JFrame();
+		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
+		setBounds(100, 100, 916, 355);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -119,7 +122,7 @@ public class Interface {
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0,
 						204)));
 		panel.setBounds(10, 11, 240, 282);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		txtBookName = new JTextField();
@@ -173,7 +176,7 @@ public class Interface {
 				229)), "Search", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(0, 0, 205)));
 		panel_2.setBounds(268, 11, 315, 282);
-		frame.getContentPane().add(panel_2);
+		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
@@ -294,7 +297,7 @@ public class Interface {
 				229)), "Remove", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(0, 0, 205)));
 		panel_4.setBounds(595, 14, 306, 279);
-		frame.getContentPane().add(panel_4);
+		getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
@@ -419,8 +422,4 @@ public class Interface {
 
 	}
 
-	public void setvisible(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
 }
