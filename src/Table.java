@@ -82,9 +82,11 @@ public class Table extends JDialog {
 			new Object[][] {
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column"
+				"Title", "ISBN", "Author Name1", "Author Name2"
 			}
 		));
+		table.getColumnModel().getColumn(2).setPreferredWidth(88);
+		table.getColumnModel().getColumn(3).setPreferredWidth(90);
 		contentPanel.setLayout(groupLayout);
 		{
 			JPanel buttonPane = new JPanel();

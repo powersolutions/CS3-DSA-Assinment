@@ -118,11 +118,7 @@ public class Interface extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.setBorder(new TitledBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "", TitledBorder.LEADING,
-				TitledBorder.TOP, null, new Color(0, 0, 205)), "Insert",
-				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0,
-						204)));
+		panel.setBorder(new TitledBorder(new TitledBorder(new LineBorder(new Color(176, 196, 222)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)), "Insert", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 204)));
 		panel.setBounds(10, 11, 240, 282);
 		getContentPane().add(panel);
 		panel.setLayout(null);
@@ -256,6 +252,7 @@ public class Interface extends JFrame {
 					// radioselect.setText("Please select ISBN NO or Book Name");
 					JOptionPane.showMessageDialog(null,"Please select ISBN NO or Book Name");
 				}
+				textsearch.setText(null);
 
 			}
 		});
@@ -282,24 +279,32 @@ public class Interface extends JFrame {
 		panel_1.add(searchall);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 146, 273, 91);
+		scrollPane.setBounds(0, 146, 295, 91);
 		panel_1.add(scrollPane);
 		
 				table = new JTable();
 				scrollPane.setViewportView(table);
-				table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
-						"New column", "New column", "New column", "New column" }));
+				table.setModel(new DefaultTableModel(
+					new Object[][] {
+					},
+					new String[] {
+						"Title", "ISBN", "Author Name1", "Author Name2"
+					}
+				));
+				table.getColumnModel().getColumn(1).setPreferredWidth(52);
+				table.getColumnModel().getColumn(2).setPreferredWidth(84);
+				table.getColumnModel().getColumn(3).setPreferredWidth(84);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
 				229)), "Remove", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(0, 0, 205)));
-		panel_4.setBounds(595, 14, 306, 279);
+		panel_4.setBounds(593, 14, 201, 279);
 		getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(12, 25, 282, 236);
+		panel_3.setBounds(12, 21, 183, 240);
 		panel_4.add(panel_3);
 		panel_3.setLayout(null);
 
@@ -318,11 +323,11 @@ public class Interface extends JFrame {
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(147, 37, 123, 20);
+		textField.setBounds(38, 89, 123, 20);
 		panel_3.add(textField);
 
 		JButton button = new JButton("Delete");
-		button.setBounds(168, 64, 89, 23);
+		button.setBounds(62, 133, 89, 23);
 		panel_3.add(button);
 
 		btnAdd.addMouseListener(new MouseAdapter() {
@@ -414,6 +419,7 @@ public class Interface extends JFrame {
 						}
 					}
 				}
+				textField.setText(null);
 			}
 
 		});
