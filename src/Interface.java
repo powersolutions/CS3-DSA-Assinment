@@ -111,7 +111,7 @@ public class Interface extends JFrame {
 	private void initialize() {
 		//frame = new JFrame();
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
-		setBounds(100, 100, 916, 355);
+		setBounds(100, 100, 1086, 355);
 		setTitle("Tree Node App");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -119,12 +119,12 @@ public class Interface extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panel.setBorder(new TitledBorder(new TitledBorder(new LineBorder(new Color(176, 196, 222)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)), "Insert", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 204)));
-		panel.setBounds(10, 11, 240, 282);
+		panel.setBounds(10, 11, 335, 305);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		txtBookName = new JTextField();
-		txtBookName.setBounds(127, 57, 86, 20);
+		txtBookName.setBounds(145, 57, 178, 20);
 		panel.add(txtBookName);
 		txtBookName.setColumns(10);
 
@@ -135,7 +135,7 @@ public class Interface extends JFrame {
 		panel.add(lblBookName);
 
 		txtISBN = new JTextField();
-		txtISBN.setBounds(127, 100, 86, 20);
+		txtISBN.setBounds(145, 100, 178, 20);
 		panel.add(txtISBN);
 		txtISBN.setColumns(10);
 
@@ -145,7 +145,7 @@ public class Interface extends JFrame {
 		panel.add(lblISBN);
 
 		txtAuthorFname = new JTextField();
-		txtAuthorFname.setBounds(127, 145, 86, 20);
+		txtAuthorFname.setBounds(145, 145, 178, 20);
 		panel.add(txtAuthorFname);
 		txtAuthorFname.setColumns(10);
 
@@ -155,17 +155,17 @@ public class Interface extends JFrame {
 		panel.add(lblAuthorFname);
 
 		txtAuthorSname = new JTextField();
-		txtAuthorSname.setBounds(127, 187, 86, 20);
+		txtAuthorSname.setBounds(145, 187, 178, 20);
 		panel.add(txtAuthorSname);
 		txtAuthorSname.setColumns(10);
 
 		JLabel lblAuthorSname = new JLabel("Author Surname");
-		lblAuthorSname.setBounds(10, 189, 117, 14);
+		lblAuthorSname.setBounds(10, 189, 141, 14);
 		lblAuthorSname.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(lblAuthorSname);
 
 		btnAdd = new JButton("Add");
-		btnAdd.setBounds(124, 230, 89, 23);
+		btnAdd.setBounds(145, 234, 89, 23);
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 13));
 		panel.add(btnAdd);
 
@@ -173,12 +173,12 @@ public class Interface extends JFrame {
 		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
 				229)), "Search", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(0, 0, 205)));
-		panel_2.setBounds(268, 11, 315, 282);
+		panel_2.setBounds(357, 11, 422, 305);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 23, 295, 248);
+		panel_1.setBounds(10, 23, 400, 270);
 		panel_2.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -279,7 +279,7 @@ public class Interface extends JFrame {
 		panel_1.add(searchall);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 146, 295, 91);
+		scrollPane.setBounds(0, 146, 388, 112);
 		panel_1.add(scrollPane);
 		
 				table = new JTable();
@@ -299,12 +299,12 @@ public class Interface extends JFrame {
 		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
 				229)), "Remove", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(0, 0, 205)));
-		panel_4.setBounds(593, 14, 201, 279);
+		panel_4.setBounds(791, 11, 277, 305);
 		getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(12, 21, 183, 240);
+		panel_3.setBounds(12, 21, 253, 272);
 		panel_4.add(panel_3);
 		panel_3.setLayout(null);
 
@@ -315,7 +315,7 @@ public class Interface extends JFrame {
 		panel_3.add(radioButton);
 
 		final JRadioButton radioButton_1 = new JRadioButton("Book Name");
-		radioButton_1.setBounds(8, 35, 109, 23);
+		radioButton_1.setBounds(123, 8, 109, 23);
 		panel_3.add(radioButton_1);
 
 		btnGroupRemove.add(radioButton);
@@ -323,11 +323,11 @@ public class Interface extends JFrame {
 
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(38, 89, 123, 20);
+		textField.setBounds(8, 54, 233, 20);
 		panel_3.add(textField);
 
 		JButton button = new JButton("Delete");
-		button.setBounds(62, 133, 89, 23);
+		button.setBounds(87, 86, 89, 23);
 		panel_3.add(button);
 
 		btnAdd.addMouseListener(new MouseAdapter() {

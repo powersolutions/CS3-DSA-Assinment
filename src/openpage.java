@@ -105,16 +105,16 @@ public class openpage extends JFrame {
 		lblNewLabel_4.setBounds(558, 453, 384, 23);
 		getContentPane().add(lblNewLabel_4);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				Interface in =new Interface();
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(openpage.class.getResource("/img/st.png")));
-		btnNewButton_1.setBounds(652, 82, 240, 239);
-		getContentPane().add(btnNewButton_1);
+		lblNewLabel_5.setIcon(new ImageIcon(openpage.class.getResource("/img/st.png")));
+		lblNewLabel_5.setBounds(627, 67, 315, 226);
+		getContentPane().add(lblNewLabel_5);
 	}
 }
