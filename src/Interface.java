@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.RowId;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -247,6 +248,8 @@ public class Interface extends JFrame {
 						JOptionPane.showMessageDialog(null, "Invalid value",
 								"Database Error", JOptionPane.ERROR_MESSAGE);
 					}
+					
+					model.removeRow(0);
 
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
