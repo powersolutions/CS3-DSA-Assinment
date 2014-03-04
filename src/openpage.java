@@ -113,8 +113,8 @@ public class openpage extends JFrame {
 				Interface in =new Interface();
 			}
 		});
-		lblNewLabel_5.setIcon(new ImageIcon(openpage.class.getResource("/img/st.png")));
-		lblNewLabel_5.setBounds(627, 67, 315, 226);
+		lblNewLabel_5.setIcon(new ImageIcon(openpage.class.getResource("/img/Untitled-2.jpg")));
+		lblNewLabel_5.setBounds(627, 55, 315, 268);
 		getContentPane().add(lblNewLabel_5);
 	}
 }
