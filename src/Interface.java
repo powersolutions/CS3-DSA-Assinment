@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.RowId;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -242,10 +243,22 @@ public class Interface extends JFrame {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
 					model.setRowCount(0);
+
+					// String temp = textsearch.getText();
+
+					/*
+					 * TreeNode node; try { orderByName(); node =
+					 * op.searchByName(name, textsearch.getText());
+					 * model.addRow(new Object[] { node.bTitle, node.ISBN,
+					 * node.aName, node.aSurname }); } catch (Exception e) { //
+					 * TODO Auto-generated catch block e.printStackTrace();
+					 * JOptionPane.showMessageDialog(null, "Invalid value",
+					 * "Database Error", JOptionPane.ERROR_MESSAGE); }
+					 */
+
 					TreeNode node = op.result;
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
-
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
 					JOptionPane.showMessageDialog(null,
@@ -270,12 +283,10 @@ public class Interface extends JFrame {
 				Table t = new Table();
 				op.getAll(root);
 				t.val = op.data;
-				if (t.val.isEmpty()) {
-					textsearch.setText("null");
-				} else {
-					t.loadData();
-					t.setVisible(true);
-				}
+
+				t.loadData();
+				t.setVisible(true);
+
 			}
 		});
 		searchall.setBounds(95, 111, 114, 23);
