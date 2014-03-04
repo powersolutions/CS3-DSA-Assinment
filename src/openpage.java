@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class openpage extends JFrame {
+	private final JLabel lblNewLabel_6 = new JLabel("");
 
 	//private JFrame frame;
 
@@ -62,22 +63,9 @@ public class openpage extends JFrame {
 		setTitle("SPUTNIKS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				dispose();
-				Interface in =new Interface();
-			}
-		});
-
-		btnNewButton.addMouseListener(new MouseAdapter() {
-		});
-		btnNewButton.setIcon(new ImageIcon(getClass().getClassLoader()
-				.getResource("img/Untitled-5.jpg")));
-		btnNewButton.setBounds(51, 25, 140, 109);
-		getContentPane().add(btnNewButton);
+		lblNewLabel_6.setIcon(new ImageIcon(openpage.class.getResource("/img/Untitled-5.jpg")));
+		lblNewLabel_6.setBounds(52, 22, 146, 115);
+		getContentPane().add(lblNewLabel_6);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(getClass().getClassLoader()
@@ -87,7 +75,7 @@ public class openpage extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("13208319 - L SHAKTHI MANAWADU");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(643, 414, 299, 27);
+		lblNewLabel_1.setBounds(558, 414, 384, 27);
 		getContentPane().add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("13208207 - G I RANGANA KANDAMBI");
