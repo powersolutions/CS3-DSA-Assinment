@@ -240,6 +240,7 @@ public class Interface extends JFrame {
 							.getModel();
 					model.setRowCount(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 					// String temp = textsearch.getText();
 
 					TreeNode node;
@@ -258,10 +259,15 @@ public class Interface extends JFrame {
 					model.removeRow(0);
 
 =======
+=======
+>>>>>>> 8f62faa08c5d7f0d468512371926bc344f9b3f6b
 					TreeNode node = op.result;
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 					
+<<<<<<< HEAD
+>>>>>>> 8f62faa08c5d7f0d468512371926bc344f9b3f6b
+=======
 >>>>>>> 8f62faa08c5d7f0d468512371926bc344f9b3f6b
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
