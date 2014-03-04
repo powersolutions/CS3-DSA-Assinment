@@ -239,11 +239,10 @@ public class Interface extends JFrame {
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
 					model.setRowCount(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 					// String temp = textsearch.getText();
 
-					TreeNode node;
+					/*TreeNode node;
 					try {
 						orderByName();
 						node = op.searchByName(name, textsearch.getText());
@@ -255,20 +254,15 @@ public class Interface extends JFrame {
 						JOptionPane.showMessageDialog(null, "Invalid value",
 								"Database Error", JOptionPane.ERROR_MESSAGE);
 					}
-					
+					*/
 					model.removeRow(0);
 
-=======
-=======
->>>>>>> 8f62faa08c5d7f0d468512371926bc344f9b3f6b
+
 					TreeNode node = op.result;
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
 					
-<<<<<<< HEAD
->>>>>>> 8f62faa08c5d7f0d468512371926bc344f9b3f6b
-=======
->>>>>>> 8f62faa08c5d7f0d468512371926bc344f9b3f6b
+
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
 					JOptionPane.showMessageDialog(null,
