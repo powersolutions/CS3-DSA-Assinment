@@ -47,23 +47,27 @@ public class Interface extends JFrame {
 	}
 
 	private void delByName(String book) {
-		orderByName();
-		if (name == null) {
-			JOptionPane.showMessageDialog(null, "Database is empty",
-					"Database Error", JOptionPane.ERROR_MESSAGE);
-		} else {
-			TreeNode temp;
-
-			try {
-				temp = op.searchByName(name, book);
-				root = op.deleteByIsbn(root, temp.ISBN);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Invalid value",
-						"Database Error", JOptionPane.ERROR_MESSAGE);
-			}
-
+		/*
+		 * orderByName(); if (name == null) {
+		 * JOptionPane.showMessageDialog(null, "Database is empty",
+		 * "Database Error", JOptionPane.ERROR_MESSAGE); } else { TreeNode temp;
+		 * 
+		 * try { temp = op.searchByName(name, book); root =
+		 * op.deleteByIsbn(root, temp.ISBN); } catch (Exception e) { // TODO
+		 * Auto-generated catch block e.printStackTrace();
+		 * JOptionPane.showMessageDialog(null, "Invalid value",
+		 * "Database Error", JOptionPane.ERROR_MESSAGE); }
+		 * 
+		 * }
+		 */
+		TreeNode temp;
+		try {
+			op.searchName(book, root);
+			temp = op.result;
+			root = op.deleteByIsbn(root, temp.ISBN);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -232,7 +236,7 @@ public class Interface extends JFrame {
 					}
 
 				} else if (radbok.isSelected()) {
-					op.result=null;
+					op.result = null;
 
 					op.searchName(textsearch.getText(), root);
 					DefaultTableModel model = (DefaultTableModel) table
@@ -241,7 +245,7 @@ public class Interface extends JFrame {
 					TreeNode node = op.result;
 					model.addRow(new Object[] { node.bTitle, node.ISBN,
 							node.aName, node.aSurname });
-					
+
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
 					JOptionPane.showMessageDialog(null,
