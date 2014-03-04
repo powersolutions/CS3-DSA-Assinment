@@ -65,10 +65,9 @@ public class Interface extends JFrame {
 			}
 
 		}
-		name = null;
 	}
 
-	//private JFrame frame;
+	// private JFrame frame;
 	private JTextField txtBookName;
 	private JTextField txtISBN;
 	private JTextField txtAuthorFname;
@@ -87,7 +86,7 @@ public class Interface extends JFrame {
 			public void run() {
 				try {
 					Interface window = new Interface();
-					//window.frame.setVisible(true);
+					// window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -98,9 +97,8 @@ public class Interface extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Interface() 
-	{
-		//setvisible(true);
+	public Interface() {
+		// setvisible(true);
 		initialize();
 		setVisible(true);
 	}
@@ -109,7 +107,7 @@ public class Interface extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		//frame = new JFrame();
+		// frame = new JFrame();
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 11));
 		setBounds(100, 100, 1086, 355);
 		setTitle("Tree Node App");
@@ -118,7 +116,11 @@ public class Interface extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		panel.setBorder(new TitledBorder(new TitledBorder(new LineBorder(new Color(176, 196, 222)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 205)), "Insert", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 204)));
+		panel.setBorder(new TitledBorder(new TitledBorder(new LineBorder(
+				new Color(176, 196, 222)), "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, new Color(0, 0, 205)), "Insert",
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0,
+						204)));
 		panel.setBounds(10, 11, 335, 305);
 		getContentPane().add(panel);
 		panel.setLayout(null);
@@ -216,8 +218,8 @@ public class Interface extends JFrame {
 					model.setRowCount(0);
 					// String temp = textsearch.getText();
 
-					TreeNode node;
 					try {
+						TreeNode node;
 						node = op.searchByIsbn(root,
 								Integer.parseInt(textsearch.getText()));
 						model.addRow(new Object[] { node.bTitle, node.ISBN,
@@ -230,27 +232,20 @@ public class Interface extends JFrame {
 					}
 
 				} else if (radbok.isSelected()) {
+					op.result=null;
+
+					op.searchName(textsearch.getText(), root);
 					DefaultTableModel model = (DefaultTableModel) table
 							.getModel();
 					model.setRowCount(0);
-					// String temp = textsearch.getText();
-
-					TreeNode node;
-					try {
-						orderByName();
-						node = op.searchByName(name, textsearch.getText());
-						model.addRow(new Object[] { node.bTitle, node.ISBN,
-								node.aName, node.aSurname });
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Invalid value",
-								"Database Error", JOptionPane.ERROR_MESSAGE);
-					}
-
+					TreeNode node = op.result;
+					model.addRow(new Object[] { node.bTitle, node.ISBN,
+							node.aName, node.aSurname });
+					
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
-					JOptionPane.showMessageDialog(null,"Please select ISBN NO or Book Name");
+					JOptionPane.showMessageDialog(null,
+							"Please select ISBN NO or Book Name");
 				}
 				textsearch.setText(null);
 
@@ -267,33 +262,32 @@ public class Interface extends JFrame {
 				tab.setRowCount(0);
 				// tab.addRow(new
 				// Object[]{"Book Name","ISBN NO","Author","Surname"});
-				
+
 				Table t = new Table();
 				op.getAll(root);
-				t.val=op.data;
-				t.loadData();
-				t.setVisible(true);
+				t.val = op.data;
+				if (t.val.isEmpty()) {
+					textsearch.setText("null");
+				} else {
+					t.loadData();
+					t.setVisible(true);
+				}
 			}
 		});
 		searchall.setBounds(95, 111, 114, 23);
 		panel_1.add(searchall);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 146, 388, 112);
 		panel_1.add(scrollPane);
-		
-				table = new JTable();
-				scrollPane.setViewportView(table);
-				table.setModel(new DefaultTableModel(
-					new Object[][] {
-					},
-					new String[] {
-						"Title", "ISBN", "Author Name1", "Author Name2"
-					}
-				));
-				table.getColumnModel().getColumn(1).setPreferredWidth(52);
-				table.getColumnModel().getColumn(2).setPreferredWidth(84);
-				table.getColumnModel().getColumn(3).setPreferredWidth(84);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
+				"Title", "ISBN", "Author Name1", "Author Name2" }));
+		table.getColumnModel().getColumn(1).setPreferredWidth(52);
+		table.getColumnModel().getColumn(2).setPreferredWidth(84);
+		table.getColumnModel().getColumn(3).setPreferredWidth(84);
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,

@@ -27,10 +27,12 @@ public class Table extends JDialog {
 	public void loadData(){
 		DefaultTableModel mod = (DefaultTableModel) table.getModel();
 		mod.setRowCount(0);
+		//table.removeAll();
 		while(!val.isEmpty()){
 			TreeNode node = val.remove();
 			mod.addRow(new Object[] { node.bTitle, node.ISBN,
 					node.aName, node.aSurname });
+			
 		}
 	}
 
@@ -42,7 +44,7 @@ public class Table extends JDialog {
 		try {
 			
 			dialog = new Table();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

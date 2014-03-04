@@ -100,6 +100,16 @@ public class Operations {
 			getAll(node.right);
 		}
 	}
+	TreeNode result;
+	public void searchName(String name, TreeNode node){
+		if(node != null){
+			searchName(name, node.left);
+			if(node.bTitle.equals(name)){
+				result = node;
+			}
+			searchName(name, node.right);
+		}
+	}
 
 	TreeNode n;
 
