@@ -19,7 +19,7 @@ public class Operations {
 	 * parameter. (root)
 	 */
 
-	public void insert(TreeNode node, String bookTitle, int ISBN,
+	/*public void insert(TreeNode node, String bookTitle, int ISBN,
 			String autherName, String autherSurname) {
 		if (bookTitle.length() < node.bTitle.length()) {
 			if (node.left != null) {
@@ -42,7 +42,7 @@ public class Operations {
 				node.right = new TreeNode(bookTitle, ISBN, autherName,
 						autherSurname);
 		}
-	}
+	}*/
 
 	public void insertByIsbn(TreeNode node, String bookTitle, int ISBN,
 			String autherName, String autherSurname) throws Exception{
@@ -64,7 +64,7 @@ public class Operations {
 		}
 	}
 
-	public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) throws Exception {
+	/*public void orderByIsbn(TreeNode treenode, TreeNode isbnNode) throws Exception {
 		// data = null;
 
 		while (!data.isEmpty()) {
@@ -75,7 +75,7 @@ public class Operations {
 			String aSurname = node.aSurname;
 			insertByIsbn(node, bName, isbn, aName, aSurname);
 		}
-	}
+	}*/
 
 	/*
 	 * inorder to get all data from the database frist you need to call the
@@ -101,7 +101,7 @@ public class Operations {
 		}
 	}
 	TreeNode result;
-	public void searchName(String name, TreeNode node){
+	public void searchName(String name, TreeNode node) throws Exception{
 		if(node != null){
 			searchName(name, node.left);
 			if(node.bTitle.equals(name)){
@@ -113,7 +113,7 @@ public class Operations {
 
 	TreeNode n;
 
-	public TreeNode searchByName(TreeNode node, String bookName) throws Exception {
+	/*public TreeNode searchByName(TreeNode node, String bookName) throws Exception {
 		n = null;
 		if (node.bTitle.length() == bookName.length()) {
 			if (node.bTitle.equals(bookName)) {
@@ -129,7 +129,7 @@ public class Operations {
 
 		}
 		return n;
-	}
+	}*/
 
 	public TreeNode searchByIsbn(TreeNode node, int isbn) throws Exception{
 		n = null;

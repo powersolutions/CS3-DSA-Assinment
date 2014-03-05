@@ -23,13 +23,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Interface extends JFrame {
 
 	TreeNode root;
 	Operations op = new Operations();
 	TreeNode name = null;
 
-	private void orderByName() {
+	/*private void orderByName() {
 		name = null;
 		op.getAll(root);
 		while (!op.data.isEmpty()) {
@@ -45,7 +48,7 @@ public class Interface extends JFrame {
 
 		op.getAll(name);
 
-	}
+	}*/
 
 	private void delByName(String book) {
 		/*
@@ -69,6 +72,9 @@ public class Interface extends JFrame {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,
+					"Invalid value", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -180,12 +186,12 @@ public class Interface extends JFrame {
 		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207,
 				229)), "Search", TitledBorder.LEADING, TitledBorder.TOP, null,
 				new Color(0, 0, 205)));
-		panel_2.setBounds(357, 11, 422, 305);
+		panel_2.setBounds(357, 11, 424, 305);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 23, 400, 270);
+		panel_1.setBounds(12, 23, 400, 270);
 		panel_2.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -239,26 +245,23 @@ public class Interface extends JFrame {
 				} else if (radbok.isSelected()) {
 					op.result = null;
 
-					op.searchName(textsearch.getText(), root);
-					DefaultTableModel model = (DefaultTableModel) table
-							.getModel();
-					model.setRowCount(0);
+					try {
+						op.searchName(textsearch.getText(), root);
+						DefaultTableModel model = (DefaultTableModel) table
+								.getModel();
+						model.setRowCount(0);
 
-					// String temp = textsearch.getText();
+						
 
-					/*
-					 * TreeNode node; try { orderByName(); node =
-					 * op.searchByName(name, textsearch.getText());
-					 * model.addRow(new Object[] { node.bTitle, node.ISBN,
-					 * node.aName, node.aSurname }); } catch (Exception e) { //
-					 * TODO Auto-generated catch block e.printStackTrace();
-					 * JOptionPane.showMessageDialog(null, "Invalid value",
-					 * "Database Error", JOptionPane.ERROR_MESSAGE); }
-					 */
-
-					TreeNode node = op.result;
-					model.addRow(new Object[] { node.bTitle, node.ISBN,
-							node.aName, node.aSurname });
+						TreeNode node = op.result;
+						model.addRow(new Object[] { node.bTitle, node.ISBN,
+								node.aName, node.aSurname });
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Invalid value",
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
 				} else {
 					// radioselect.setText("Please select ISBN NO or Book Name");
 					JOptionPane.showMessageDialog(null,
@@ -272,6 +275,10 @@ public class Interface extends JFrame {
 		panel_1.add(search);
 
 		JButton searchall = new JButton("Search All");
+		searchall.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		searchall.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -293,7 +300,7 @@ public class Interface extends JFrame {
 		panel_1.add(searchall);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 146, 388, 112);
+		scrollPane.setBounds(0, 146, 400, 112);
 		panel_1.add(scrollPane);
 
 		table = new JTable();
@@ -424,7 +431,15 @@ public class Interface extends JFrame {
 								"are you sure?", "Remove confirm",
 								JOptionPane.YES_NO_OPTION);
 						if (x == 0) {
-							delByName(textField.getText());
+							try {
+								delByName(textField.getText());
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+								JOptionPane.showMessageDialog(null,
+										"Invalid value", "Error",
+										JOptionPane.ERROR_MESSAGE);
+							}
 						}
 					}
 				}
